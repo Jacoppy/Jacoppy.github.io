@@ -1,0 +1,631 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.18.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Bastion - EntrophyBlog</title>
+<meta name="description" content="USER ">
+
+
+  <meta name="author" content="Entrophy">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="EntrophyBlog">
+<meta property="og:title" content="Bastion">
+<meta property="og:url" content="http://localhost:4000/JustAnEntrophyBlog/htb/bastion/">
+
+
+  <meta property="og:description" content="USER ">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/JustAnEntrophyBlog/assets/images/bio-photo.jpg">
+
+
+
+  <meta name="twitter:site" content="@mmistakes">
+  <meta name="twitter:title" content="Bastion">
+  <meta name="twitter:description" content="USER ">
+  <meta name="twitter:url" content="http://localhost:4000/JustAnEntrophyBlog/htb/bastion/">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+      <meta name="twitter:image" content="http://localhost:4000/JustAnEntrophyBlog/assets/images/bio-photo.jpg">
+    
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2019-09-13T00:00:00+02:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/JustAnEntrophyBlog/htb/bastion/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Your Name",
+      "url": "http://localhost:4000/JustAnEntrophyBlog/",
+      "sameAs": ["https://twitter.com/","https://github.com/"]
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/JustAnEntrophyBlog/feed.xml" type="application/atom+xml" rel="alternate" title="EntrophyBlog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/JustAnEntrophyBlog/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/JustAnEntrophyBlog/"><img src="/JustAnEntrophyBlog/JustAnEntrophyBlog/assets/images/apple-touch-icon.png" alt=""></a>
+        
+        <a class="site-title" href="/JustAnEntrophyBlog/">
+          There must be a title?
+          <span class="site-subtitle">Just Another Blog</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/JustAnEntrophyBlog/aboutMe/" >About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/JustAnEntrophyBlog/year-archive/" >HTB WriteUps</a>
+            </li><li class="masthead__menu-item">
+              <a href="/JustAnEntrophyBlog/collection-archive/" >Posts</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+
+      
+        <img src="/JustAnEntrophyBlog/assets/images/bio-photo.jpg" alt="Entrophy" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Entrophy</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>I am</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Somewhere</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="https://twitter.com/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+          
+        
+          
+            <li><a href="https://github.com/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+          
+            <li><a href="https://instagram.com/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-instagram" aria-hidden="true"></i> Instagram</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Bastion">
+    <meta itemprop="description" content="USER">
+    <meta itemprop="datePublished" content="2019-09-13T00:00:00+02:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Bastion
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  4 minute read
+
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <h1 id="user">USER</h1>
+
+<p>The first thing we have done has been to perform an <strong>Nmap</strong> scan against the target.</p>
+
+<pre>nmap -sS -sV -v -A -p- -oA nmap_tcp_all 10.10.10.134
+
+PORT STATE SERVICE VERSION
+22/tcp open ssh OpenSSH for_Windows_7.9 (protocol 2.0)
+| ssh-hostkey:
+| 2048 3a:56:ae:75:3c:78:0e:c8:56:4d:cb:1c:22:bf:45:8a (RSA)
+| 256 cc:2e:56:ab:19:97:d5:bb:03:fb:82:cd:63:da:68:01 (ECDSA)
+|_ 256 93:5f:5d:aa:ca:9f:53:e7:f2:82:e6:64:a8:a3:a0:18 (ED25519)
+135/tcp open msrpc Microsoft Windows RPC
+139/tcp open netbios-ssn Microsoft Windows netbios-ssn
+445/tcp open microsoft-ds Windows Server 2016 Standard 14393 microsoft-ds
+5985/tcp open http Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+|_http-server-header: Microsoft-HTTPAPI/2.0
+|_http-title: Not Found
+47001/tcp open http Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+|_http-server-header: Microsoft-HTTPAPI/2.0
+|_http-title: Not Found
+49664/tcp open msrpc Microsoft Windows RPC
+49665/tcp open msrpc Microsoft Windows RPC
+49666/tcp open msrpc Microsoft Windows RPC
+49667/tcp open msrpc Microsoft Windows RPC
+49668/tcp open msrpc Microsoft Windows RPC
+49669/tcp open msrpc Microsoft Windows RPC
+49670/tcp open msrpc Microsoft Windows RPC
+
+</pre>
+
+<p>As it is possible to notice the only interesting ports are SMB ports. For this reason we
+tried to use smbmap with guest account, through the following command :</p>
+
+<p><code class="highlighter-rouge">smbmap -H 10.10.10.134 -u guest -p "" -R</code></p>
+
+<p><img src="http://localhost:4000/JustAnEntrophyBlog/assets/images/bastion/initial_smb.png" alt="" /></p>
+
+<p>As it is possible to observe the result is quite interesting because we can freely access to
+the Backup folder of the SMB server.
+Trying to download large files has revealed to be slow so we tried so we tried to mount
+the smb share on our box, using the following command:</p>
+
+<p><code class="highlighter-rouge">mount //10.10.10.134/Backups ./vhd/ -o user=guest</code></p>
+
+<p>Unfortunately the command does not work properly, apparently the File System is CIFS and mount
+need a further module, cifs-utils.
+After having installed the module, we could access the SMB share running:</p>
+
+<p><code class="highlighter-rouge">mount //10.10.10.134/Backups ./vhd/ -o user=guest</code></p>
+
+<p>Enumerating the share locally, we can notice a WindowsImageBackup folder, which could potentially
+contain some interesting backup files. Reaching the following folder WindowsImageBackup/L4mpje-
+PC/Backup 2019-02-22 124351 is possible to notice some xml and Windows Disk Image files.</p>
+
+<p><img src="http://localhost:4000/JustAnEntrophyBlog/assets/images/bastion/tree_smbshare.png" alt="" /></p>
+
+<p>The first try is to mount that image file. We need to find a tool which allows us to mount vhd image
+files, because Kali doesn’t support it natively.</p>
+
+<p><code class="highlighter-rouge">sudo apt-get install libvhdi-utils sleuthkit
+vhdimount 9b9cfbc4-369e-11e9-a17c-806e6f6e6963.vhd
+/root/Documents/HTB/Bastion/smb/vhd_mount/</code></p>
+
+<p>In this way we create a device vhd1 in the selected folder, creating a Boot-Sector for mounitng the
+Windows Image Disk. At this step , simply trying to mount the device returns an error, declaring that
+NTFS signature is missing.
+Analysing the vhdi1 using mmls shows that the NFS partition does not start from the beginning of the
+file, but from 0000000128.</p>
+
+<p><img src="http://localhost:4000/JustAnEntrophyBlog/assets/images/bastion/mmls.png" alt="" /></p>
+
+<p>Using this information is possible to calculate the offset, which is 128*512 (sector length) = 65536.
+Rewriting the commands brings to:</p>
+
+<p><code class="highlighter-rouge">mount -vt ntfs-3g -o ro,noload,offset=65536 /.vhdi1 ./backup/</code></p>
+
+<p>And we were able to mount the partition in the backup folder. Looking at the backup, it is clear that it
+contains the whole Windows OS, including the configuration files. Indeed, it is possible to access to the
+folder /Windows/System32/config and have access to SYSTEM and SAM files, which are needed in
+order to dump the hashes of the users.</p>
+
+<p><img src="http://localhost:4000/JustAnEntrophyBlog/assets/images/bastion/hashdump.png" alt="" /></p>
+
+<p>Using john specifying the NT format is possible to crack the password of user L4mpje.
+Administrator::500:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+Guest::501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+L4mpje:<strong>bureaulampje</strong>:1000:aad3b435b51404eeaad3b435b51404ee:26112010952d963c8dc4217daec9
+86d9:::
+Using the discovered credential over ssh allows to open a session as user L4mpje, obtaining the first
+flag.</p>
+
+<p><img src="http://localhost:4000/JustAnEntrophyBlog/assets/images/bastion/user.png" alt="" /></p>
+
+<h1 id="root">ROOT</h1>
+
+<p>Now we need to get superuser privileges. As first, we need to enumerate the Windows FS, searching for
+interesting files. Unofrtunately the systeminfo command is denied, so I tried to access the same
+information using powershell, verifying if I obtain a different result. And so it was, we were able to
+identify the current OS version using Get-ComputerInfo.</p>
+
+<p><img src="http://localhost:4000/JustAnEntrophyBlog/assets/images/bastion/windowsos.png" alt="" /></p>
+
+<p>In order to have a complete overview of the files and programs installed on the comuter, I also run the
+Powerless [1] enumeration script. The output is present as Appendix.
+Digging into the listed files, we noticed a non-standard application installed under Program Files (x86)<br />
+mRemoteNG.
+Googling it we discovered that it is a manager for remote connections for different communications
+protocols [2]. So it could likely contains usefull credentials, hopefully of the Administrator user,
+granting us full control over the box. Further researching for possible ways to recovery the password, I
+found an interesting article [3]. Despite it proposes three different ways in order to recover it, the only
+one actually working for me is the first one, which involves installing mRemoteNG in a Windows
+system.
+The file which contains the credential we are searching for is under Users\L4mpje\AppData\Roaming<br />
+mRemoteNG\confCons.xml which contains two nodes, so probably, two encrypted credentials.</p>
+
+<p><img src="http://localhost:4000/JustAnEntrophyBlog/assets/images/bastion/nodes.png" alt="" /></p>
+
+<p>After having started a Windows VM and having installed mRemoteNG on it, I modified the
+confCons.xml file in order to set a blank password for opening the file and loaded it using mRemoteNG
+on my VM. The file is successfully loaded and the program shows two connectins : DC and L4mpje.
+Using the password lookup tool of mRemoteNg, we are able to check the credentials of both user,
+finding a new password.</p>
+
+<p><img src="http://localhost:4000/JustAnEntrophyBlog/assets/images/bastion/Capture.PNG" alt="" /></p>
+
+<p>Providing this as password for user Administrator over ssh opens up an ssh session, so are have finally
+owned the box. We can take the last flag and say bye bye to Bastion :P</p>
+
+<p><img src="http://localhost:4000/JustAnEntrophyBlog/assets/images/bastion/root.png" alt="" /></p>
+
+<h1 id="references">References</h1>
+
+<p>[1] : https://github.com/M4ximuss/Powerless</p>
+
+<p>[2] : https://mremoteng.org</p>
+
+<p>[3] : http://hackersvanguard.com/mremoteng-insecure-password-storage/</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/JustAnEntrophyBlog/categories/#htb" class="page__taxonomy-item" rel="tag">HTB</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-09-13T00:00:00+02:00">September 13, 2019</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?via=mmistakes&text=Bastion%20http%3A%2F%2Flocalhost%3A4000%2FJustAnEntrophyBlog%2Fhtb%2Fbastion%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2FJustAnEntrophyBlog%2Fhtb%2Fbastion%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2FJustAnEntrophyBlog%2Fhtb%2Fbastion%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="#" class="pagination--pager disabled">Previous</a>
+    
+    
+      <a href="/JustAnEntrophyBlog/htb/ghoul/" class="pagination--pager" title="Ghoul
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/JustAnEntrophyBlog/htb/ghoul/" rel="permalink">Ghoul
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  10 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">USER
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://twitter.com/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+        
+      
+        
+          <li><a href="https://github.com/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+          <li><a href="https://instagram.com/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-instagram" aria-hidden="true"></i> Instagram</a></li>
+        
+      
+    
+
+    <li><a href="/JustAnEntrophyBlog/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 Your Name. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/JustAnEntrophyBlog/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+<script src="/JustAnEntrophyBlog/assets/js/lunr/lunr.min.js"></script>
+<script src="/JustAnEntrophyBlog/assets/js/lunr/lunr-store.js"></script>
+<script src="/JustAnEntrophyBlog/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>
