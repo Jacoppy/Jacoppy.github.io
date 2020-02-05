@@ -1,4 +1,4 @@
-I"Ö<h1 id="user">USER</h1>
+I"4<h1 id="user">USER</h1>
 
 <p>The first thing we have done has been to perform an <strong>Nmap</strong> scan against the target.</p>
 
@@ -34,7 +34,7 @@ tried to use smbmap with guest account, through the following command :</p>
 
 <p><code class="highlighter-rouge">smbmap -H 10.10.10.134 -u guest -p "" -R</code></p>
 
-<p><img src="http://localhost:4000/JustAnEntrophyBlog/assets/images/bastion/initial_smb.png" alt="" /></p>
+<p><img src="http://localhost:4000//assets/images/bastion/initial_smb.png" alt="" /></p>
 
 <p>As it is possible to observe the result is quite interesting because we can freely access to
 the Backup folder of the SMB server.
@@ -53,7 +53,7 @@ After having installed the module, we could access the SMB share running:</p>
 contain some interesting backup files. Reaching the following folder WindowsImageBackup/L4mpje-
 PC/Backup 2019-02-22 124351 is possible to notice some xml and Windows Disk Image files.</p>
 
-<p><img src="http://localhost:4000/JustAnEntrophyBlog/assets/images/bastion/tree_smbshare.png" alt="" /></p>
+<p><img src="http://localhost:4000//assets/images/bastion/tree_smbshare.png" alt="" /></p>
 
 <p>The first try is to mount that image file. We need to find a tool which allows us to mount vhd image
 files, because Kali doesnâ€™t support it natively.</p>
@@ -68,7 +68,7 @@ NTFS signature is missing.
 Analysing the vhdi1 using mmls shows that the NFS partition does not start from the beginning of the
 file, but from 0000000128.</p>
 
-<p><img src="http://localhost:4000/JustAnEntrophyBlog/assets/images/bastion/mmls.png" alt="" /></p>
+<p><img src="http://localhost:4000//assets/images/bastion/mmls.png" alt="" /></p>
 
 <p>Using this information is possible to calculate the offset, which is 128*512 (sector length) = 65536.
 Rewriting the commands brings to:</p>
@@ -80,7 +80,7 @@ contains the whole Windows OS, including the configuration files. Indeed, it is 
 folder /Windows/System32/config and have access to SYSTEM and SAM files, which are needed in
 order to dump the hashes of the users.</p>
 
-<p><img src="http://localhost:4000/JustAnEntrophyBlog/assets/images/bastion/hashdump.png" alt="" /></p>
+<p><img src="http://localhost:4000//assets/images/bastion/hashdump.png" alt="" /></p>
 
 <p>Using john specifying the NT format is possible to crack the password of user L4mpje.
 Administrator::500:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
@@ -90,7 +90,7 @@ L4mpje:<strong>bureaulampje</strong>:1000:aad3b435b51404eeaad3b435b51404ee:26112
 Using the discovered credential over ssh allows to open a session as user L4mpje, obtaining the first
 flag.</p>
 
-<p><img src="http://localhost:4000/JustAnEntrophyBlog/assets/images/bastion/user.png" alt="" /></p>
+<p><img src="http://localhost:4000//assets/images/bastion/user.png" alt="" /></p>
 
 <h1 id="root">ROOT</h1>
 
@@ -99,7 +99,7 @@ interesting files. Unofrtunately the systeminfo command is denied, so I tried to
 information using powershell, verifying if I obtain a different result. And so it was, we were able to
 identify the current OS version using Get-ComputerInfo.</p>
 
-<p><img src="http://localhost:4000/JustAnEntrophyBlog/assets/images/bastion/windowsos.png" alt="" /></p>
+<p><img src="http://localhost:4000//assets/images/bastion/windowsos.png" alt="" /></p>
 
 <p>In order to have a complete overview of the files and programs installed on the comuter, I also run the
 Powerless [1] enumeration script. The output is present as Appendix.
@@ -114,7 +114,7 @@ system.
 The file which contains the credential we are searching for is under Users\L4mpje\AppData\Roaming<br />
 mRemoteNG\confCons.xml which contains two nodes, so probably, two encrypted credentials.</p>
 
-<p><img src="http://localhost:4000/JustAnEntrophyBlog/assets/images/bastion/nodes.png" alt="" /></p>
+<p><img src="http://localhost:4000//assets/images/bastion/nodes.png" alt="" /></p>
 
 <p>After having started a Windows VM and having installed mRemoteNG on it, I modified the
 confCons.xml file in order to set a blank password for opening the file and loaded it using mRemoteNG
@@ -122,12 +122,12 @@ on my VM. The file is successfully loaded and the program shows two connectins :
 Using the password lookup tool of mRemoteNg, we are able to check the credentials of both user,
 finding a new password.</p>
 
-<p><img src="http://localhost:4000/JustAnEntrophyBlog/assets/images/bastion/Capture.PNG" alt="" /></p>
+<p><img src="http://localhost:4000//assets/images/bastion/Capture.PNG" alt="" /></p>
 
 <p>Providing this as password for user Administrator over ssh opens up an ssh session, so are have finally
 owned the box. We can take the last flag and say bye bye to Bastion :P</p>
 
-<p><img src="http://localhost:4000/JustAnEntrophyBlog/assets/images/bastion/root.png" alt="" /></p>
+<p><img src="http://localhost:4000//assets/images/bastion/root.png" alt="" /></p>
 
 <h1 id="references">References</h1>
 

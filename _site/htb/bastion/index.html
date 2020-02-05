@@ -20,26 +20,26 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="EntrophyBlog">
 <meta property="og:title" content="Bastion">
-<meta property="og:url" content="http://localhost:4000/JustAnEntrophyBlog/htb/bastion/">
+<meta property="og:url" content="http://localhost:4000/htb/bastion/">
 
 
   <meta property="og:description" content="USER ">
 
 
 
-  <meta property="og:image" content="http://localhost:4000/JustAnEntrophyBlog/assets/images/bio-photo.jpg">
+  <meta property="og:image" content="http://localhost:4000/assets/images/bio-photo.jpg">
 
 
 
   <meta name="twitter:site" content="@mmistakes">
   <meta name="twitter:title" content="Bastion">
   <meta name="twitter:description" content="USER ">
-  <meta name="twitter:url" content="http://localhost:4000/JustAnEntrophyBlog/htb/bastion/">
+  <meta name="twitter:url" content="http://localhost:4000/htb/bastion/">
 
   
     <meta name="twitter:card" content="summary">
     
-      <meta name="twitter:image" content="http://localhost:4000/JustAnEntrophyBlog/assets/images/bio-photo.jpg">
+      <meta name="twitter:image" content="http://localhost:4000/assets/images/bio-photo.jpg">
     
   
 
@@ -47,7 +47,7 @@
 
 
 
-  <meta property="article:published_time" content="2019-09-13T00:00:00+02:00">
+  <meta property="article:published_time" content="2019-09-13T00:00:00+01:00">
 
 
 
@@ -58,7 +58,7 @@
   
 
 
-<link rel="canonical" href="http://localhost:4000/JustAnEntrophyBlog/htb/bastion/">
+<link rel="canonical" href="http://localhost:4000/htb/bastion/">
 
 
 
@@ -69,7 +69,7 @@
     
       "@type": "Person",
       "name": "Your Name",
-      "url": "http://localhost:4000/JustAnEntrophyBlog/",
+      "url": "http://localhost:4000/",
       "sameAs": ["https://twitter.com/","https://github.com/"]
     
   }
@@ -83,7 +83,7 @@
 <!-- end _includes/seo.html -->
 
 
-<link href="/JustAnEntrophyBlog/feed.xml" type="application/atom+xml" rel="alternate" title="EntrophyBlog Feed">
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="EntrophyBlog Feed">
 
 <!-- https://t.co/dKP3o1e -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -93,7 +93,7 @@
 </script>
 
 <!-- For all browsers -->
-<link rel="stylesheet" href="/JustAnEntrophyBlog/assets/css/main.css">
+<link rel="stylesheet" href="/assets/css/main.css">
 
 <!--[if IE]>
   <style>
@@ -141,18 +141,18 @@
     <div class="masthead__menu">
       <nav id="site-nav" class="greedy-nav">
         
-          <a class="site-logo" href="/JustAnEntrophyBlog/"><img src="/JustAnEntrophyBlog/JustAnEntrophyBlog/assets/images/apple-touch-icon.png" alt=""></a>
+          <a class="site-logo" href="/"><img src="/assets/images/logo.png" alt=""></a>
         
-        <a class="site-title" href="/JustAnEntrophyBlog/">
+        <a class="site-title" href="/">
           There must be a title?
           <span class="site-subtitle">Just Another Blog</span>
         </a>
         <ul class="visible-links"><li class="masthead__menu-item">
-              <a href="/JustAnEntrophyBlog/aboutMe/" >About</a>
+              <a href="/aboutMe/" >About</a>
             </li><li class="masthead__menu-item">
-              <a href="/JustAnEntrophyBlog/year-archive/" >HTB WriteUps</a>
+              <a href="/year-archive/" >HTB WriteUps</a>
             </li><li class="masthead__menu-item">
-              <a href="/JustAnEntrophyBlog/collection-archive/" >Posts</a>
+              <a href="/collection-archive/" >Posts</a>
             </li></ul>
         
         <button class="search__toggle" type="button">
@@ -191,7 +191,7 @@
       
 
       
-        <img src="/JustAnEntrophyBlog/assets/images/bio-photo.jpg" alt="Entrophy" itemprop="image">
+        <img src="/assets/images/entrophy.jpg" alt="Entrophy" itemprop="image">
       
     </div>
   
@@ -220,11 +220,11 @@
       
         
           
-            <li><a href="https://twitter.com/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+            <li><a href="https://twitter.com/Entrophy6" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
           
         
           
-            <li><a href="https://github.com/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+            <li><a href="https://github.com/Jacoppy" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
           
         
           
@@ -299,7 +299,7 @@
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="Bastion">
     <meta itemprop="description" content="USER">
-    <meta itemprop="datePublished" content="2019-09-13T00:00:00+02:00">
+    <meta itemprop="datePublished" content="2019-09-13T00:00:00+01:00">
     
 
     <div class="page__inner-wrap">
@@ -358,7 +358,7 @@ tried to use smbmap with guest account, through the following command :</p>
 
 <p><code class="highlighter-rouge">smbmap -H 10.10.10.134 -u guest -p "" -R</code></p>
 
-<p><img src="http://localhost:4000/JustAnEntrophyBlog/assets/images/bastion/initial_smb.png" alt="" /></p>
+<p><img src="http://localhost:4000//assets/images/bastion/initial_smb.png" alt="" /></p>
 
 <p>As it is possible to observe the result is quite interesting because we can freely access to
 the Backup folder of the SMB server.
@@ -377,7 +377,7 @@ After having installed the module, we could access the SMB share running:</p>
 contain some interesting backup files. Reaching the following folder WindowsImageBackup/L4mpje-
 PC/Backup 2019-02-22 124351 is possible to notice some xml and Windows Disk Image files.</p>
 
-<p><img src="http://localhost:4000/JustAnEntrophyBlog/assets/images/bastion/tree_smbshare.png" alt="" /></p>
+<p><img src="http://localhost:4000//assets/images/bastion/tree_smbshare.png" alt="" /></p>
 
 <p>The first try is to mount that image file. We need to find a tool which allows us to mount vhd image
 files, because Kali doesn’t support it natively.</p>
@@ -392,7 +392,7 @@ NTFS signature is missing.
 Analysing the vhdi1 using mmls shows that the NFS partition does not start from the beginning of the
 file, but from 0000000128.</p>
 
-<p><img src="http://localhost:4000/JustAnEntrophyBlog/assets/images/bastion/mmls.png" alt="" /></p>
+<p><img src="http://localhost:4000//assets/images/bastion/mmls.png" alt="" /></p>
 
 <p>Using this information is possible to calculate the offset, which is 128*512 (sector length) = 65536.
 Rewriting the commands brings to:</p>
@@ -404,7 +404,7 @@ contains the whole Windows OS, including the configuration files. Indeed, it is 
 folder /Windows/System32/config and have access to SYSTEM and SAM files, which are needed in
 order to dump the hashes of the users.</p>
 
-<p><img src="http://localhost:4000/JustAnEntrophyBlog/assets/images/bastion/hashdump.png" alt="" /></p>
+<p><img src="http://localhost:4000//assets/images/bastion/hashdump.png" alt="" /></p>
 
 <p>Using john specifying the NT format is possible to crack the password of user L4mpje.
 Administrator::500:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
@@ -414,7 +414,7 @@ L4mpje:<strong>bureaulampje</strong>:1000:aad3b435b51404eeaad3b435b51404ee:26112
 Using the discovered credential over ssh allows to open a session as user L4mpje, obtaining the first
 flag.</p>
 
-<p><img src="http://localhost:4000/JustAnEntrophyBlog/assets/images/bastion/user.png" alt="" /></p>
+<p><img src="http://localhost:4000//assets/images/bastion/user.png" alt="" /></p>
 
 <h1 id="root">ROOT</h1>
 
@@ -423,7 +423,7 @@ interesting files. Unofrtunately the systeminfo command is denied, so I tried to
 information using powershell, verifying if I obtain a different result. And so it was, we were able to
 identify the current OS version using Get-ComputerInfo.</p>
 
-<p><img src="http://localhost:4000/JustAnEntrophyBlog/assets/images/bastion/windowsos.png" alt="" /></p>
+<p><img src="http://localhost:4000//assets/images/bastion/windowsos.png" alt="" /></p>
 
 <p>In order to have a complete overview of the files and programs installed on the comuter, I also run the
 Powerless [1] enumeration script. The output is present as Appendix.
@@ -438,7 +438,7 @@ system.
 The file which contains the credential we are searching for is under Users\L4mpje\AppData\Roaming<br />
 mRemoteNG\confCons.xml which contains two nodes, so probably, two encrypted credentials.</p>
 
-<p><img src="http://localhost:4000/JustAnEntrophyBlog/assets/images/bastion/nodes.png" alt="" /></p>
+<p><img src="http://localhost:4000//assets/images/bastion/nodes.png" alt="" /></p>
 
 <p>After having started a Windows VM and having installed mRemoteNG on it, I modified the
 confCons.xml file in order to set a blank password for opening the file and loaded it using mRemoteNG
@@ -446,12 +446,12 @@ on my VM. The file is successfully loaded and the program shows two connectins :
 Using the password lookup tool of mRemoteNg, we are able to check the credentials of both user,
 finding a new password.</p>
 
-<p><img src="http://localhost:4000/JustAnEntrophyBlog/assets/images/bastion/Capture.PNG" alt="" /></p>
+<p><img src="http://localhost:4000//assets/images/bastion/Capture.PNG" alt="" /></p>
 
 <p>Providing this as password for user Administrator over ssh opens up an ssh session, so are have finally
 owned the box. We can take the last flag and say bye bye to Bastion :P</p>
 
-<p><img src="http://localhost:4000/JustAnEntrophyBlog/assets/images/bastion/root.png" alt="" /></p>
+<p><img src="http://localhost:4000//assets/images/bastion/root.png" alt="" /></p>
 
 <h1 id="references">References</h1>
 
@@ -482,25 +482,25 @@ owned the box. We can take the last flag and say bye bye to Bastion :P</p>
     
       
       
-      <a href="/JustAnEntrophyBlog/categories/#htb" class="page__taxonomy-item" rel="tag">HTB</a>
+      <a href="/categories/#htb" class="page__taxonomy-item" rel="tag">HTB</a>
     
     </span>
   </p>
 
 
         
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-09-13T00:00:00+02:00">September 13, 2019</time></p>
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-09-13T00:00:00+01:00">September 13, 2019</time></p>
         
       </footer>
 
       <section class="page__share">
   
 
-  <a href="https://twitter.com/intent/tweet?via=mmistakes&text=Bastion%20http%3A%2F%2Flocalhost%3A4000%2FJustAnEntrophyBlog%2Fhtb%2Fbastion%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?via=mmistakes&text=Bastion%20http%3A%2F%2Flocalhost%3A4000%2Fhtb%2Fbastion%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2FJustAnEntrophyBlog%2Fhtb%2Fbastion%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fhtb%2Fbastion%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2FJustAnEntrophyBlog%2Fhtb%2Fbastion%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fhtb%2Fbastion%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
@@ -510,7 +510,7 @@ owned the box. We can take the last flag and say bye bye to Bastion :P</p>
       <a href="#" class="pagination--pager disabled">Previous</a>
     
     
-      <a href="/JustAnEntrophyBlog/htb/ghoul/" class="pagination--pager" title="Ghoul
+      <a href="/htb/ghoul/" class="pagination--pager" title="Ghoul
 ">Next</a>
     
   </nav>
@@ -535,7 +535,7 @@ owned the box. We can take the last flag and say bye bye to Bastion :P</p>
     
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="/JustAnEntrophyBlog/htb/ghoul/" rel="permalink">Ghoul
+        <a href="/htb/ghoul/" rel="permalink">Ghoul
 </a>
       
     </h2>
@@ -601,7 +601,7 @@ owned the box. We can take the last flag and say bye bye to Bastion :P</p>
       
     
 
-    <li><a href="/JustAnEntrophyBlog/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
   </ul>
 </div>
 
@@ -611,15 +611,15 @@ owned the box. We can take the last flag and say bye bye to Bastion :P</p>
     </div>
 
     
-  <script src="/JustAnEntrophyBlog/assets/js/main.min.js"></script>
+  <script src="/assets/js/main.min.js"></script>
   <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
 
 
 
 
-<script src="/JustAnEntrophyBlog/assets/js/lunr/lunr.min.js"></script>
-<script src="/JustAnEntrophyBlog/assets/js/lunr/lunr-store.js"></script>
-<script src="/JustAnEntrophyBlog/assets/js/lunr/lunr-en.js"></script>
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
 
 
 

@@ -13,7 +13,7 @@ url                      : # the base hostname & protocol for your site e.g. "ht
 baseurl                  : "/"
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
-logo                     : "/assets/images/apple-touch-icon.png" # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
+logo                     : "/assets/images/logo.png" # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
 masthead_title           : "There must be a title?" # overrides the website title displayed in the masthead, use " " for no title
 # breadcrumbs            : false # true, false (default)
 words_per_minute         : 200
@@ -91,16 +91,16 @@ analytics:
 # Site Author
 author:
   name             : "Entrophy"
-  avatar           : "/assets/images/bio-photo.jpg"
+  avatar           : "/assets/images/entrophy.jpg"
   bio              : "I am"
   location         : "Somewhere"
   links:
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/"
+      url: "https://twitter.com/Entrophy6"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      url: "https://github.com/"
+      url: "https://github.com/Jacoppy"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
       url: "https://instagram.com/"
@@ -257,6 +257,12 @@ collections:
   BugBounty:
     output: true
     permalink: /:collection/:path/
+  Graphic:
+    output: true
+    permalink: /:collection/:path/
+  Music:
+    output: true
+    permalink: /:collection/:path/
 
 
 # Defaults
@@ -298,6 +304,22 @@ defaults:
   - scope:
       path: ""
       type: BugBounty
+    values:
+      layout: single
+      author_profile: true
+      share: true
+   # _Graphic
+  - scope:
+      path: ""
+      type: Graphic
+    values:
+      layout: single
+      author_profile: true
+      share: true
+   # _Music
+  - scope:
+      path: ""
+      type: Music
     values:
       layout: single
       author_profile: true

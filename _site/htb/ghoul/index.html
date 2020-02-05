@@ -20,26 +20,26 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="EntrophyBlog">
 <meta property="og:title" content="Ghoul">
-<meta property="og:url" content="http://localhost:4000/JustAnEntrophyBlog/htb/ghoul/">
+<meta property="og:url" content="http://localhost:4000/htb/ghoul/">
 
 
   <meta property="og:description" content="USER ">
 
 
 
-  <meta property="og:image" content="http://localhost:4000/JustAnEntrophyBlog/assets/images/bio-photo.jpg">
+  <meta property="og:image" content="http://localhost:4000/assets/images/bio-photo.jpg">
 
 
 
   <meta name="twitter:site" content="@mmistakes">
   <meta name="twitter:title" content="Ghoul">
   <meta name="twitter:description" content="USER ">
-  <meta name="twitter:url" content="http://localhost:4000/JustAnEntrophyBlog/htb/ghoul/">
+  <meta name="twitter:url" content="http://localhost:4000/htb/ghoul/">
 
   
     <meta name="twitter:card" content="summary">
     
-      <meta name="twitter:image" content="http://localhost:4000/JustAnEntrophyBlog/assets/images/bio-photo.jpg">
+      <meta name="twitter:image" content="http://localhost:4000/assets/images/bio-photo.jpg">
     
   
 
@@ -47,7 +47,7 @@
 
 
 
-  <meta property="article:published_time" content="2019-10-04T00:00:00+02:00">
+  <meta property="article:published_time" content="2019-10-04T00:00:00+01:00">
 
 
 
@@ -58,7 +58,7 @@
   
 
 
-<link rel="canonical" href="http://localhost:4000/JustAnEntrophyBlog/htb/ghoul/">
+<link rel="canonical" href="http://localhost:4000/htb/ghoul/">
 
 
 
@@ -69,7 +69,7 @@
     
       "@type": "Person",
       "name": "Your Name",
-      "url": "http://localhost:4000/JustAnEntrophyBlog/",
+      "url": "http://localhost:4000/",
       "sameAs": ["https://twitter.com/","https://github.com/"]
     
   }
@@ -83,7 +83,7 @@
 <!-- end _includes/seo.html -->
 
 
-<link href="/JustAnEntrophyBlog/feed.xml" type="application/atom+xml" rel="alternate" title="EntrophyBlog Feed">
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="EntrophyBlog Feed">
 
 <!-- https://t.co/dKP3o1e -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -93,7 +93,7 @@
 </script>
 
 <!-- For all browsers -->
-<link rel="stylesheet" href="/JustAnEntrophyBlog/assets/css/main.css">
+<link rel="stylesheet" href="/assets/css/main.css">
 
 <!--[if IE]>
   <style>
@@ -141,18 +141,18 @@
     <div class="masthead__menu">
       <nav id="site-nav" class="greedy-nav">
         
-          <a class="site-logo" href="/JustAnEntrophyBlog/"><img src="/JustAnEntrophyBlog/JustAnEntrophyBlog/assets/images/apple-touch-icon.png" alt=""></a>
+          <a class="site-logo" href="/"><img src="/assets/images/logo.png" alt=""></a>
         
-        <a class="site-title" href="/JustAnEntrophyBlog/">
+        <a class="site-title" href="/">
           There must be a title?
           <span class="site-subtitle">Just Another Blog</span>
         </a>
         <ul class="visible-links"><li class="masthead__menu-item">
-              <a href="/JustAnEntrophyBlog/aboutMe/" >About</a>
+              <a href="/aboutMe/" >About</a>
             </li><li class="masthead__menu-item">
-              <a href="/JustAnEntrophyBlog/year-archive/" >HTB WriteUps</a>
+              <a href="/year-archive/" >HTB WriteUps</a>
             </li><li class="masthead__menu-item">
-              <a href="/JustAnEntrophyBlog/collection-archive/" >Posts</a>
+              <a href="/collection-archive/" >Posts</a>
             </li></ul>
         
         <button class="search__toggle" type="button">
@@ -191,7 +191,7 @@
       
 
       
-        <img src="/JustAnEntrophyBlog/assets/images/bio-photo.jpg" alt="Entrophy" itemprop="image">
+        <img src="/assets/images/entrophy.jpg" alt="Entrophy" itemprop="image">
       
     </div>
   
@@ -220,11 +220,11 @@
       
         
           
-            <li><a href="https://twitter.com/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+            <li><a href="https://twitter.com/Entrophy6" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
           
         
           
-            <li><a href="https://github.com/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+            <li><a href="https://github.com/Jacoppy" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
           
         
           
@@ -299,7 +299,7 @@
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="Ghoul">
     <meta itemprop="description" content="USER">
-    <meta itemprop="datePublished" content="2019-10-04T00:00:00+02:00">
+    <meta itemprop="datePublished" content="2019-10-04T00:00:00+01:00">
     
 
     <div class="page__inner-wrap">
@@ -374,11 +374,11 @@ PORT     STATE SERVICE VERSION
 <p>This reveals an interesting page, secret.php.
 It shows a chat between system admins  talking about an RCE on the current infrastructure.</p>
 
-<p><img src="http://localhost:4000/JustAnEntrophyBlog/assets/images/Ghoul/secret_1.png" alt="" /></p>
+<p><img src="http://localhost:4000//assets/images/Ghoul/secret_1.png" alt="" /></p>
 
 <p>Due to the fact that the enumeration didn’t show anything else interesting here I swapped port and went to port 8080. I then tried <strong>admin:admin</strong> and it worked, revealing a website for uploading images or zip files on the server.</p>
 
-<p><img src="http://localhost:4000/JustAnEntrophyBlog/assets/images/Ghoul/zip_2.png" alt="" /></p>
+<p><img src="http://localhost:4000//assets/images/Ghoul/zip_2.png" alt="" /></p>
 
 <p>After a few tests in which I verified that it is not possible to easily evade the file-type filters of the upload form I searched a bit on google and I found the Ziplib vulnerability (https://github.com/snyk/zip-slip-vulnerability). This vulnerability allows to write arbitrary files because the zip archives contains directory traversal filenames.</p>
 
@@ -388,11 +388,11 @@ It shows a chat between system admins  talking about an RCE on the current infra
 zip ziplib_www.zip ../../../../../var/www/html/rev.php
 </pre>
 
-<p><img src="http://localhost:4000/JustAnEntrophyBlog/assets/images/Ghoul/zip_slip_3.png" alt="" /></p>
+<p><img src="http://localhost:4000//assets/images/Ghoul/zip_slip_3.png" alt="" /></p>
 
 <p>Once uploaded the ziplib_www.zip file using the upload form, connecting to http://10.10.10.101:80/rev.php returns a reverse shell on our netcat listener.</p>
 
-<p><img src="http://localhost:4000/JustAnEntrophyBlog/assets/images/Ghoul/rev_4.png" alt="" /></p>
+<p><img src="http://localhost:4000//assets/images/Ghoul/rev_4.png" alt="" /></p>
 
 <p>Enumerating the box, I noticed that there are three users with a login: eto,kaneki and noro.
 LinEnum.sh shows up interesting backup files under the folder /var/backups . After having downloaded the whole directory using a meterpreter session and figured out that most of the files are rabbit holes I focused only on the directory /var/backups/backups/keys, which contains three old ssh private keys of the three users.
@@ -406,7 +406,7 @@ Unfortunately all these keys are encrypted so I had to find a way to decrypt tho
 
 <p>And finally I got it cracked!</p>
 
-<p><img src="http://localhost:4000/JustAnEntrophyBlog/assets/images/Ghoul/ssh_pswd_5.png" alt="" /></p>
+<p><img src="http://localhost:4000//assets/images/Ghoul/ssh_pswd_5.png" alt="" /></p>
 
 <p>The ssh decryption password for kaneki ssh is <strong>ILoveTouka</strong> and I am finally able to login as kaneki. 
 Got user !</p>
@@ -423,7 +423,7 @@ notes : I've set up file server into the server's network ,Eto if you need to tr
 
 <p>Indeed, looking at ifconfig:</p>
 
-<p><img src="http://localhost:4000/JustAnEntrophyBlog/assets/images/Ghoul/ifconfig_6.png" alt="" /></p>
+<p><img src="http://localhost:4000//assets/images/Ghoul/ifconfig_6.png" alt="" /></p>
 
 <p>So apparently there is an internal network 172.20.0.0/24 and we need to explore it.
 Indeed, after uploading nmap and having run:</p>
@@ -478,7 +478,7 @@ I noticed then another text file:</p>
 
 <p>This means that there is a git repo somewhere on one of these hosts, which could contain interesting info. Moreover, looking at ifconfig, I noticed that this box is connected to a new subnet,172.18.0.0/24:</p>
 
-<p><img src="http://localhost:4000/JustAnEntrophyBlog/assets/images/Ghoul/ifconfig_7.png" alt="" /></p>
+<p><img src="http://localhost:4000//assets/images/Ghoul/ifconfig_7.png" alt="" /></p>
 
 <p>In order to upload nmap also on this box, I used an ssh tunneling:</p>
 
@@ -522,13 +522,13 @@ PORT   STATE SERVICE
 
 <p>And we can see a login screen of Gogs.</p>
 
-<p><img src="http://localhost:4000/JustAnEntrophyBlog/assets/images/Ghoul/web_8.png" alt="" /></p>
+<p><img src="http://localhost:4000//assets/images/Ghoul/web_8.png" alt="" /></p>
 
 <p>After enormous time spent bruteforcing the credentials I just tried to use all users and passwords already found on the box and I finally found the right combination.</p>
 
 <p><strong>AogiriTest:test@aogiri123</strong></p>
 
-<p><img src="http://localhost:4000/JustAnEntrophyBlog/assets/images/Ghoul/gogs_9.png" alt="" /></p>
+<p><img src="http://localhost:4000//assets/images/Ghoul/gogs_9.png" alt="" /></p>
 
 <p>From a previous note we know there is a vulnerability on gogs so google is our best friend here..
 And I found this coll github repo with Poc : https://github.com/TheZ3ro/gogsownz.
@@ -544,7 +544,7 @@ So mainly we are able to obtain a RCE on gogs. Let’s try to obtain a reverse s
 
 <p>And I am git on 172.18.0.2!</p>
 
-<p><img src="http://localhost:4000/JustAnEntrophyBlog/assets/images/Ghoul/root_9.png" alt="" /></p>
+<p><img src="http://localhost:4000//assets/images/Ghoul/root_9.png" alt="" /></p>
 
 <p>Enumerating the system I noticed that there is only one user except root, which git, which seems mandatory for Gogs. This seems pointless so go on with enumeration!
 Let’s try with classical Linux enumeration files using  https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/
@@ -560,7 +560,7 @@ Running enumeration for SUID binaries we see something interesting:</p>
 <b>/usr/sbin/gosu</b>
 /bin/su</pre>
 
-<p><img src="http://localhost:4000/JustAnEntrophyBlog/assets/images/Ghoul/gosu_10.png" alt="" /></p>
+<p><img src="http://localhost:4000//assets/images/Ghoul/gosu_10.png" alt="" /></p>
 
 <p>So just running:</p>
 
@@ -570,7 +570,7 @@ Running enumeration for SUID binaries we see something interesting:</p>
 
 <p>Going into the /root folder I can see interesting information:</p>
 
-<p><img src="http://localhost:4000/JustAnEntrophyBlog/assets/images/Ghoul/root_12.png" alt="" /></p>
+<p><img src="http://localhost:4000//assets/images/Ghoul/root_12.png" alt="" /></p>
 
 <p>So we have new credentials :</p>
 
@@ -662,7 +662,7 @@ server.address=0.0.0.0</pre>
 
 <pre>su : pasword 7^Grc%C\7xEQ?tb4</pre>
 
-<p><img src="http://localhost:4000/JustAnEntrophyBlog/assets/images/Ghoul/kaneki_13.png" alt="" /></p>
+<p><img src="http://localhost:4000//assets/images/Ghoul/kaneki_13.png" alt="" /></p>
 
 <p>…
 Ok so we are root on the 172.18.0.200, the only host that is still untouched is the docker server on 172.20.0.1. Maybe on the filesystem there are some info for connect to it.
@@ -670,7 +670,7 @@ Run enumeration, nothing.
 Lets try conjobs, just run pspy64 and wait a while.
 And finally something weird happened:</p>
 
-<p><img src="http://localhost:4000/JustAnEntrophyBlog/assets/images/Ghoul/pspy_14.png" alt="" /></p>
+<p><img src="http://localhost:4000//assets/images/Ghoul/pspy_14.png" alt="" /></p>
 
 <p>It seems that some other host is passing through this host to reach 172.18.0.1 for a root session on it…interesting
 After a bit of googling I got my answer:</p>
@@ -682,7 +682,7 @@ After a bit of googling I got my answer:</p>
 <pre>SSH_AUTH_SOCK=/tmp/ssh-e6wtZlMHTY/agent.1061 ssh root@172.18.0.1 -p 2222</pre>
 
 <p>finally root…
-<img src="http://localhost:4000/JustAnEntrophyBlog/assets/images/Ghoul/root_15.png" alt="" /></p>
+<img src="http://localhost:4000//assets/images/Ghoul/root_15.png" alt="" /></p>
 
 <h4 id="who-ate-the-ghoul--thank-you-for-reading-this-write-up-feedback-is-appreciated-happy-hacking-">Who ate the Ghoul ? Thank you for reading this write-up. Feedback is appreciated! Happy hacking :)</h4>
 
@@ -708,32 +708,32 @@ After a bit of googling I got my answer:</p>
     
       
       
-      <a href="/JustAnEntrophyBlog/categories/#htb" class="page__taxonomy-item" rel="tag">HTB</a>
+      <a href="/categories/#htb" class="page__taxonomy-item" rel="tag">HTB</a>
     
     </span>
   </p>
 
 
         
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-10-04T00:00:00+02:00">October 4, 2019</time></p>
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-10-04T00:00:00+01:00">October 4, 2019</time></p>
         
       </footer>
 
       <section class="page__share">
   
 
-  <a href="https://twitter.com/intent/tweet?via=mmistakes&text=Ghoul%20http%3A%2F%2Flocalhost%3A4000%2FJustAnEntrophyBlog%2Fhtb%2Fghoul%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?via=mmistakes&text=Ghoul%20http%3A%2F%2Flocalhost%3A4000%2Fhtb%2Fghoul%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2FJustAnEntrophyBlog%2Fhtb%2Fghoul%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fhtb%2Fghoul%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2FJustAnEntrophyBlog%2Fhtb%2Fghoul%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fhtb%2Fghoul%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
       
   <nav class="pagination">
     
-      <a href="/JustAnEntrophyBlog/htb/bastion/" class="pagination--pager" title="Bastion
+      <a href="/htb/bastion/" class="pagination--pager" title="Bastion
 ">Previous</a>
     
     
@@ -761,7 +761,7 @@ After a bit of googling I got my answer:</p>
     
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="/JustAnEntrophyBlog/htb/bastion/" rel="permalink">Bastion
+        <a href="/htb/bastion/" rel="permalink">Bastion
 </a>
       
     </h2>
@@ -827,7 +827,7 @@ After a bit of googling I got my answer:</p>
       
     
 
-    <li><a href="/JustAnEntrophyBlog/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
   </ul>
 </div>
 
@@ -837,15 +837,15 @@ After a bit of googling I got my answer:</p>
     </div>
 
     
-  <script src="/JustAnEntrophyBlog/assets/js/main.min.js"></script>
+  <script src="/assets/js/main.min.js"></script>
   <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
 
 
 
 
-<script src="/JustAnEntrophyBlog/assets/js/lunr/lunr.min.js"></script>
-<script src="/JustAnEntrophyBlog/assets/js/lunr/lunr-store.js"></script>
-<script src="/JustAnEntrophyBlog/assets/js/lunr/lunr-en.js"></script>
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
 
 
 
