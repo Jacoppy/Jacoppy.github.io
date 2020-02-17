@@ -10,7 +10,7 @@
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>Eumeration for Windows - EntrophyBlog</title>
-<meta name="description" content=" ">
+<meta name="description" content="Here at following a little batch script I created which could be usefull for subdomain discovering and enumeration. I really love CommandoVM so yea, why not developing a little lazyrecon for it ;) Enjoy! ">
 
 
   <meta name="author" content="Entrophy">
@@ -23,7 +23,7 @@
 <meta property="og:url" content="http://localhost:4000/BugBounty/EnumerationForWindows/">
 
 
-  <meta property="og:description" content=" ">
+  <meta property="og:description" content="Here at following a little batch script I created which could be usefull for subdomain discovering and enumeration. I really love CommandoVM so yea, why not developing a little lazyrecon for it ;) Enjoy! ">
 
 
 
@@ -33,7 +33,7 @@
 
   <meta name="twitter:site" content="@mmistakes">
   <meta name="twitter:title" content="Eumeration for Windows">
-  <meta name="twitter:description" content=" ">
+  <meta name="twitter:description" content="Here at following a little batch script I created which could be usefull for subdomain discovering and enumeration. I really love CommandoVM so yea, why not developing a little lazyrecon for it ;) Enjoy! ">
   <meta name="twitter:url" content="http://localhost:4000/BugBounty/EnumerationForWindows/">
 
   
@@ -47,7 +47,7 @@
 
 
 
-  <meta property="article:published_time" content="2020-02-04T14:07:20+00:00">
+  <meta property="article:published_time" content="2020-02-17T15:11:52+00:00">
 
 
 
@@ -298,8 +298,8 @@
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="Eumeration for Windows">
-    <meta itemprop="description" content="">
-    <meta itemprop="datePublished" content="2020-02-04T14:07:20+00:00">
+    <meta itemprop="description" content="Here at following a little batch script I created which could be usefull for subdomain discovering and enumeration.I really love CommandoVM so yea, why not developing a little lazyrecon for it ;)Enjoy!">
+    <meta itemprop="datePublished" content="2020-02-17T15:11:52+00:00">
     
 
     <div class="page__inner-wrap">
@@ -313,7 +313,67 @@
 
       <section class="page__content" itemprop="text">
         
-        
+        <p>Here at following a little batch script I created which could be usefull for subdomain discovering and enumeration.
+I really love <a href="https://github.com/fireeye/commando-vm">CommandoVM</a> so yea, why not developing a little <a href="https://github.com/nahamsec/lazyrecon">lazyrecon</a> for it ;)
+Enjoy!</p>
+
+<div class="language-batch highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@echo <span class="na">off</span>
+<span class="nb">echo</span>       ############################
+<span class="nb">echo</span> .             <span class="kd">CommandoVM</span> <span class="kd">Recon</span>         . 
+<span class="nb">echo</span>       ############################
+<span class="nb">echo</span> <span class="o">----------------------------------------</span>
+<span class="kd">set</span> <span class="kd">year</span><span class="o">=</span><span class="vm">%date</span>:<span class="o">~-</span><span class="m">4</span><span class="err">%</span>
+<span class="kd">set</span> <span class="kd">month</span><span class="o">=</span><span class="vm">%date</span>:<span class="o">~</span><span class="m">3</span><span class="o">,</span><span class="m">2</span><span class="err">%</span>
+<span class="kd">set</span> <span class="kd">day</span><span class="o">=</span><span class="vm">%date</span>:<span class="o">~</span><span class="m">7</span><span class="o">,</span><span class="m">2</span><span class="err">%</span>
+<span class="kd">set</span> @domain<span class="o">=</span><span class="err">%</span><span class="m">1</span>
+<span class="kd">set</span> @rootpath<span class="o">=</span><span class="err">%</span><span class="m">2</span>
+<span class="kd">set</span> <span class="kd">assetfinder</span><span class="o">=</span> <span class="kd">C</span>:\Users\Entropico\go\bin\assetfinder.exe
+<span class="kd">set</span> <span class="kd">aquatonepath</span><span class="o">=</span> <span class="kd">C</span>:\Tools\Aquatone\aquatone.exe
+<span class="kd">set</span> <span class="kd">dnscan</span><span class="o">=</span>  <span class="kd">C</span>:\Tools\dnscan\dnscan.py
+<span class="kd">set</span> <span class="kd">dnscan_wordlist</span><span class="o">=</span> <span class="kd">C</span>:\Tools\SecLists\Discovery\DNS\jhaddix<span class="na">-dns</span>.txt
+<span class="kd">set</span> <span class="kd">sublister</span><span class="o">=</span> <span class="kd">C</span>:\Tools\Sublist3r\sublist3r.py
+<span class="kd">set</span> <span class="kd">amasspath</span><span class="o">=</span> <span class="kd">C</span>:\Tools\Amass\amass.exe
+<span class="kd">set</span> <span class="kd">dirsearchpath</span><span class="o">=</span><span class="kd">C</span>:\Tools\dirsearch\
+<span class="kd">set</span> <span class="kd">chromiumpath</span><span class="o">=</span> <span class="kd">C</span>:\Tools\Aquatone\chromium\chrome.exe
+<span class="kd">set</span> <span class="kd">waybackurlspath</span><span class="o">=</span> <span class="kd">C</span>:\Users\Entropico\go\bin\waybackurls.exe
+<span class="kd">set</span> <span class="kd">httprobe</span><span class="o">=</span> <span class="kd">C</span>:\Users\Entropico\go\bin\httprobe.exe
+<span class="kd">set</span> <span class="kd">python3</span> <span class="o">=</span> <span class="kd">C</span>:\Python38\python.exe
+<span class="nb">echo</span> <span class="kd">Starting</span> <span class="kd">the</span> <span class="kd">enumeration</span> <span class="kd">of</span> <span class="nv">%@domain%</span>
+<span class="nb">echo</span> <span class="kd">Creating</span> <span class="kd">Folder</span> <span class="k">for</span> <span class="nv">%@domain%</span>
+<span class="kd">set</span> <span class="kd">saveresult</span><span class="o">=</span><span class="nv">%@rootpath%</span>\<span class="nv">%@domain%</span>_<span class="nv">%year%</span>_<span class="nv">%month%</span>
+<span class="nb">mkdir</span> <span class="nv">%saveresult%</span>
+<span class="nb">echo</span> <span class="kd">Amass</span> <span class="kd">is</span> <span class="kd">running</span>...
+<span class="nv">%amasspath%</span> <span class="kd">enum</span> <span class="na">-d </span><span class="nv">%@domain%</span> <span class="na">-o </span><span class="nv">%saveresult%</span>\amass.txt <span class="o">-</span><span class="na">-passive
+</span><span class="nb">echo</span> <span class="kd">Amass</span> <span class="kd">Done</span>
+<span class="nb">echo</span> <span class="kd">Sublist3r</span> <span class="kd">is</span> <span class="kd">running</span>...
+<span class="kd">python</span> <span class="nv">%sublister%</span>  <span class="na">-d </span><span class="s2">"</span><span class="nv">%@domain%</span><span class="s2">"</span> <span class="na">-b -o </span><span class="nv">%saveresult%</span>\sublist3r.txt <span class="na">-v
+</span><span class="nb">echo</span> <span class="kd">Sublist3r</span> <span class="kd">Done</span>
+<span class="nb">echo</span> <span class="kd">DNScan</span> <span class="kd">is</span> <span class="kd">running</span>...
+<span class="kd">python</span> <span class="nv">%dnscan%</span>  <span class="na">-d </span><span class="nv">%@domain%</span> <span class="na">-w </span><span class="nv">%dnscan_wordlist%</span> <span class="na">-o </span><span class="nv">%saveresult%</span>\dnscan.txt <span class="na">-R </span><span class="m">8</span>.8.8.8 <span class="na">-r
+</span><span class="kd">awk</span>  <span class="s1">'/</span><span class="nv">%@domain%</span><span class="s1">/{print $3}'</span> <span class="nv">%saveresult%</span>\dnscan.txt <span class="o">|</span> <span class="kd">tail</span> <span class="na">-n</span><span class="o">+</span><span class="m">2</span> <span class="o">&gt;</span> <span class="nv">%saveresult%</span>\dnscan_clean.txt
+<span class="kd">rm</span> <span class="nv">%saveresult%</span>\dnscan.txt
+<span class="nb">echo</span> <span class="kd">DNScan</span> <span class="kd">Done</span>
+<span class="nb">echo</span> <span class="kd">AssetFinder</span> <span class="kd">is</span> <span class="kd">running</span>...
+<span class="nv">%assetfinder%</span>  <span class="nv">%@domain%</span>  <span class="o">&gt;</span> <span class="nv">%saveresult%</span>\assetfinder.txt
+<span class="nb">echo</span> <span class="kd">AssetFinder</span> <span class="kd">Done</span>
+<span class="nb">echo</span> <span class="kd">Merging</span> <span class="kd">all</span> <span class="kd">subdomains</span> <span class="kd">found</span>...
+<span class="kd">cat</span>  <span class="nv">%saveresult%</span>\<span class="o">*</span> <span class="o">|</span> <span class="nb">sort</span> <span class="o">|</span> <span class="kd">uniq</span> <span class="o">&gt;</span> <span class="nv">%saveresult%</span>\final_subdomain_list.txt
+<span class="nb">echo</span> <span class="kd">HTTProbe</span> <span class="kd">is</span> <span class="kd">running</span>...
+<span class="kd">cat</span> <span class="nv">%saveresult%</span>\final_subdomain_list.txt <span class="o">|</span> <span class="nv">%httprobe%</span>  <span class="o">&gt;</span> <span class="nv">%saveresult%</span>\final_online_subdomains_temp.txt
+<span class="kd">cat</span>   <span class="nv">%saveresult%</span>\final_online_subdomains_temp.txt  <span class="o">|</span> <span class="kd">sed</span> <span class="s2">"s/\http\:\/\///g"</span> <span class="o">|</span>  <span class="kd">sed</span> <span class="s2">"s/\https\:\/\///g"</span> <span class="o">|</span> <span class="nb">sort</span> <span class="o">|</span> <span class="kd">uniq</span> <span class="o">&gt;</span> <span class="nv">%saveresult%</span>\final_online_subdomains.txt
+<span class="kd">rm</span> <span class="nv">%saveresult%</span>\final_online_subdomains_temp.txt
+<span class="nb">echo</span> <span class="kd">HTTProbe</span> <span class="kd">Done</span>
+<span class="nb">echo</span> <span class="kd">WayBackURLS</span> <span class="kd">is</span> <span class="kd">running</span>...
+<span class="kd">cat</span> <span class="nv">%saveresult%</span>\final_online_subdomains.txt <span class="o">|</span> <span class="nv">%waybackurlspath%</span> <span class="na">-dates -no-subs </span><span class="o">&gt;</span> <span class="nv">%saveresult%</span>\waybackurls.txt
+<span class="nb">echo</span> <span class="kd">WayBackURLS</span> <span class="kd">Done</span>
+<span class="nb">echo</span> <span class="kd">Aquatone</span> <span class="kd">Enumerate</span> <span class="nv">%@domain%</span>
+<span class="nb">echo</span> <span class="kd">Starting</span> <span class="kd">Aquatone</span>...
+<span class="kd">cat</span> <span class="nv">%saveresult%</span>\final_online_subdomains.txt <span class="o">|</span> <span class="nv">%aquatonepath%</span> <span class="na">-ports </span><span class="kd">medium</span> <span class="na">-scan-timeout </span><span class="m">10000</span> <span class="na">-out </span><span class="nv">%saveresult%</span>\aquatone<span class="na">-report -screenshot-timeout </span><span class="m">6000</span> <span class="na">-chrome-path </span><span class="nv">%chromiumpath%</span>
+<span class="nb">echo</span> <span class="kd">Aquatone</span> <span class="kd">Done</span>
+<span class="nb">echo</span> <span class="kd">Performing</span> <span class="kd">Dirsearch</span>...
+<span class="vm">%python3</span><span class="err">%</span> <span class="nv">%dirsearchpath%</span><span class="kd">dirsearch</span>.py <span class="na">-L </span><span class="nv">%saveresult%</span>\aquatone<span class="na">-report</span>\aquatone_urls.txt <span class="na">-e </span><span class="o">*</span>
+<span class="nb">echo</span> <span class="kd">Done</span> <span class="err">!</span> <span class="kd">Save</span> <span class="kd">every</span> <span class="kd">result</span> <span class="k">in</span> <span class="nv">%saveresult%</span>
+</code></pre></div></div>
 
         
       </section>
@@ -324,7 +384,7 @@
 
 
         
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-02-04T14:07:20+00:00">February 4, 2020</time></p>
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-02-17T15:11:52+00:00">February 17, 2020</time></p>
         
       </footer>
 
