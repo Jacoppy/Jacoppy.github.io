@@ -1,0 +1,483 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.18.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Eumeration for Windows - EntrophyBlog</title>
+<meta name="description" content="Here at following a little batch script I created which could be usefull for subdomain discovering and enumeration. I really love CommandoVM so yea, why not developing a little lazyrecon for it ;) Enjoy! ">
+
+
+  <meta name="author" content="Entrophy">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="EntrophyBlog">
+<meta property="og:title" content="Eumeration for Windows">
+<meta property="og:url" content="/Hacking/EnumerationForWindows/">
+
+
+  <meta property="og:description" content="Here at following a little batch script I created which could be usefull for subdomain discovering and enumeration. I really love CommandoVM so yea, why not developing a little lazyrecon for it ;) Enjoy! ">
+
+
+
+  <meta property="og:image" content="/assets/images/bio-photo.jpg">
+
+
+
+  <meta name="twitter:site" content="@mmistakes">
+  <meta name="twitter:title" content="Eumeration for Windows">
+  <meta name="twitter:description" content="Here at following a little batch script I created which could be usefull for subdomain discovering and enumeration. I really love CommandoVM so yea, why not developing a little lazyrecon for it ;) Enjoy! ">
+  <meta name="twitter:url" content="/Hacking/EnumerationForWindows/">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+      <meta name="twitter:image" content="/assets/images/bio-photo.jpg">
+    
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2021-04-11T15:13:43+01:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="/Hacking/EnumerationForWindows/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Your Name",
+      "url": "/",
+      "sameAs": ["https://twitter.com/","https://github.com/"]
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="EntrophyBlog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/"><img src="/assets/images/logo.png" alt=""></a>
+        
+        <a class="site-title" href="/">
+          There must be a title?
+          <span class="site-subtitle">Just Another Blog</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/aboutMe/" >About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/year-archive/" >HTB WriteUps</a>
+            </li><li class="masthead__menu-item">
+              <a href="/collection-archive/" >Posts</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+
+      
+        <img src="/assets/images/entrophy.jpg" alt="Entrophy" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Entrophy</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>I am</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Somewhere</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="https://twitter.com/Entrophy6" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+          
+        
+          
+            <li><a href="https://github.com/3ntr0phy" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+          
+            <li><a href="https://instagram.com/__3ntr0py__" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-instagram" aria-hidden="true"></i> Instagram</a></li>
+          
+        
+          
+            <li><a href="https://app.hackthebox.eu/profile/9548" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-list" aria-hidden="true"></i> HackTheBox</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Eumeration for Windows">
+    <meta itemprop="description" content="Here at following a little batch script I created which could be usefull for subdomain discovering and enumeration.I really love CommandoVM so yea, why not developing a little lazyrecon for it ;)Enjoy!">
+    <meta itemprop="datePublished" content="2021-04-11T15:13:43+01:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Eumeration for Windows
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>Here at following a little batch script I created which could be usefull for subdomain discovering and enumeration.
+I really love <a href="https://github.com/fireeye/commando-vm">CommandoVM</a> so yea, why not developing a little <a href="https://github.com/nahamsec/lazyrecon">lazyrecon</a> for it ;)
+Enjoy!</p>
+
+<div class="language-batch highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@echo <span class="na">off</span>
+<span class="nb">echo</span>       ############################
+<span class="nb">echo</span> .             <span class="kd">CommandoVM</span> <span class="kd">Recon</span>         . 
+<span class="nb">echo</span>       ############################
+<span class="nb">echo</span> <span class="o">----------------------------------------</span>
+<span class="kd">set</span> <span class="kd">year</span><span class="o">=</span><span class="vm">%date</span>:<span class="o">~-</span><span class="m">4</span><span class="err">%</span>
+<span class="kd">set</span> <span class="kd">month</span><span class="o">=</span><span class="vm">%date</span>:<span class="o">~</span><span class="m">3</span><span class="o">,</span><span class="m">2</span><span class="err">%</span>
+<span class="kd">set</span> <span class="kd">day</span><span class="o">=</span><span class="vm">%date</span>:<span class="o">~</span><span class="m">7</span><span class="o">,</span><span class="m">2</span><span class="err">%</span>
+<span class="kd">set</span> @domain<span class="o">=</span><span class="err">%</span><span class="m">1</span>
+<span class="kd">set</span> @rootpath<span class="o">=</span><span class="err">%</span><span class="m">2</span>
+<span class="kd">set</span> <span class="kd">assetfinder</span><span class="o">=</span> <span class="kd">C</span>:\Users\Entropico\go\bin\assetfinder.exe
+<span class="kd">set</span> <span class="kd">aquatonepath</span><span class="o">=</span> <span class="kd">C</span>:\Tools\Aquatone\aquatone.exe
+<span class="kd">set</span> <span class="kd">dnscan</span><span class="o">=</span>  <span class="kd">C</span>:\Tools\dnscan\dnscan.py
+<span class="kd">set</span> <span class="kd">dnscan_wordlist</span><span class="o">=</span> <span class="kd">C</span>:\Tools\SecLists\Discovery\DNS\jhaddix<span class="na">-dns</span>.txt
+<span class="kd">set</span> <span class="kd">sublister</span><span class="o">=</span> <span class="kd">C</span>:\Tools\Sublist3r\sublist3r.py
+<span class="kd">set</span> <span class="kd">amasspath</span><span class="o">=</span> <span class="kd">C</span>:\Tools\Amass\amass.exe
+<span class="kd">set</span> <span class="kd">dirsearchpath</span><span class="o">=</span><span class="kd">C</span>:\Tools\dirsearch\
+<span class="kd">set</span> <span class="kd">chromiumpath</span><span class="o">=</span> <span class="kd">C</span>:\Tools\Aquatone\chromium\chrome.exe
+<span class="kd">set</span> <span class="kd">waybackurlspath</span><span class="o">=</span> <span class="kd">C</span>:\Users\Entropico\go\bin\waybackurls.exe
+<span class="kd">set</span> <span class="kd">httprobe</span><span class="o">=</span> <span class="kd">C</span>:\Users\Entropico\go\bin\httprobe.exe
+<span class="kd">set</span> <span class="kd">python3</span> <span class="o">=</span> <span class="kd">C</span>:\Python38\python.exe
+<span class="nb">echo</span> <span class="kd">Starting</span> <span class="kd">the</span> <span class="kd">enumeration</span> <span class="kd">of</span> <span class="nv">%@domain%</span>
+<span class="nb">echo</span> <span class="kd">Creating</span> <span class="kd">Folder</span> <span class="k">for</span> <span class="nv">%@domain%</span>
+<span class="kd">set</span> <span class="kd">saveresult</span><span class="o">=</span><span class="nv">%@rootpath%</span>\<span class="nv">%@domain%</span>_<span class="nv">%year%</span>_<span class="nv">%month%</span>
+<span class="nb">mkdir</span> <span class="nv">%saveresult%</span>
+<span class="nb">echo</span> <span class="kd">Amass</span> <span class="kd">is</span> <span class="kd">running</span>...
+<span class="nv">%amasspath%</span> <span class="kd">enum</span> <span class="na">-d </span><span class="nv">%@domain%</span> <span class="na">-o </span><span class="nv">%saveresult%</span>\amass.txt <span class="na">--passive
+</span><span class="nb">echo</span> <span class="kd">Amass</span> <span class="kd">Done</span>
+<span class="nb">echo</span> <span class="kd">Sublist3r</span> <span class="kd">is</span> <span class="kd">running</span>...
+<span class="kd">python</span> <span class="nv">%sublister%</span>  <span class="na">-d </span><span class="s2">"</span><span class="nv">%@domain%</span><span class="s2">"</span> <span class="na">-b -o </span><span class="nv">%saveresult%</span>\sublist3r.txt <span class="na">-v
+</span><span class="nb">echo</span> <span class="kd">Sublist3r</span> <span class="kd">Done</span>
+<span class="nb">echo</span> <span class="kd">DNScan</span> <span class="kd">is</span> <span class="kd">running</span>...
+<span class="kd">python</span> <span class="nv">%dnscan%</span>  <span class="na">-d </span><span class="nv">%@domain%</span> <span class="na">-w </span><span class="nv">%dnscan_wordlist%</span> <span class="na">-o </span><span class="nv">%saveresult%</span>\dnscan.txt <span class="na">-R </span><span class="m">8</span>.8.8.8 <span class="na">-r
+</span><span class="kd">awk</span>  <span class="s1">'/</span><span class="nv">%@domain%</span><span class="s1">/{print $3}'</span> <span class="nv">%saveresult%</span>\dnscan.txt <span class="o">|</span> <span class="kd">tail</span> <span class="na">-n</span><span class="o">+</span><span class="m">2</span> <span class="o">&gt;</span> <span class="nv">%saveresult%</span>\dnscan_clean.txt
+<span class="kd">rm</span> <span class="nv">%saveresult%</span>\dnscan.txt
+<span class="nb">echo</span> <span class="kd">DNScan</span> <span class="kd">Done</span>
+<span class="nb">echo</span> <span class="kd">AssetFinder</span> <span class="kd">is</span> <span class="kd">running</span>...
+<span class="nv">%assetfinder%</span>  <span class="nv">%@domain%</span>  <span class="o">&gt;</span> <span class="nv">%saveresult%</span>\assetfinder.txt
+<span class="nb">echo</span> <span class="kd">AssetFinder</span> <span class="kd">Done</span>
+<span class="nb">echo</span> <span class="kd">Merging</span> <span class="kd">all</span> <span class="kd">subdomains</span> <span class="kd">found</span>...
+<span class="kd">cat</span>  <span class="nv">%saveresult%</span>\<span class="o">*</span> <span class="o">|</span> <span class="nb">sort</span> <span class="o">|</span> <span class="kd">uniq</span> <span class="o">&gt;</span> <span class="nv">%saveresult%</span>\final_subdomain_list.txt
+<span class="nb">echo</span> <span class="kd">HTTProbe</span> <span class="kd">is</span> <span class="kd">running</span>...
+<span class="kd">cat</span> <span class="nv">%saveresult%</span>\final_subdomain_list.txt <span class="o">|</span> <span class="nv">%httprobe%</span>  <span class="o">&gt;</span> <span class="nv">%saveresult%</span>\final_online_subdomains_temp.txt
+<span class="kd">cat</span>   <span class="nv">%saveresult%</span>\final_online_subdomains_temp.txt  <span class="o">|</span> <span class="kd">sed</span> <span class="s2">"s/\http\:\/\///g"</span> <span class="o">|</span>  <span class="kd">sed</span> <span class="s2">"s/\https\:\/\///g"</span> <span class="o">|</span> <span class="nb">sort</span> <span class="o">|</span> <span class="kd">uniq</span> <span class="o">&gt;</span> <span class="nv">%saveresult%</span>\final_online_subdomains.txt
+<span class="kd">rm</span> <span class="nv">%saveresult%</span>\final_online_subdomains_temp.txt
+<span class="nb">echo</span> <span class="kd">HTTProbe</span> <span class="kd">Done</span>
+<span class="nb">echo</span> <span class="kd">WayBackURLS</span> <span class="kd">is</span> <span class="kd">running</span>...
+<span class="kd">cat</span> <span class="nv">%saveresult%</span>\final_online_subdomains.txt <span class="o">|</span> <span class="nv">%waybackurlspath%</span> <span class="na">-dates -no-subs </span><span class="o">&gt;</span> <span class="nv">%saveresult%</span>\waybackurls.txt
+<span class="nb">echo</span> <span class="kd">WayBackURLS</span> <span class="kd">Done</span>
+<span class="nb">echo</span> <span class="kd">Aquatone</span> <span class="kd">Enumerate</span> <span class="nv">%@domain%</span>
+<span class="nb">echo</span> <span class="kd">Starting</span> <span class="kd">Aquatone</span>...
+<span class="kd">cat</span> <span class="nv">%saveresult%</span>\final_online_subdomains.txt <span class="o">|</span> <span class="nv">%aquatonepath%</span> <span class="na">-ports </span><span class="kd">medium</span> <span class="na">-scan-timeout </span><span class="m">10000</span> <span class="na">-out </span><span class="nv">%saveresult%</span>\aquatone<span class="na">-report -screenshot-timeout </span><span class="m">6000</span> <span class="na">-chrome-path </span><span class="nv">%chromiumpath%</span>
+<span class="nb">echo</span> <span class="kd">Aquatone</span> <span class="kd">Done</span>
+<span class="nb">echo</span> <span class="kd">Performing</span> <span class="kd">Dirsearch</span>...
+<span class="vm">%python3</span><span class="err">%</span> <span class="nv">%dirsearchpath%</span><span class="kd">dirsearch</span>.py <span class="na">-L </span><span class="nv">%saveresult%</span>\aquatone<span class="na">-report</span>\aquatone_urls.txt <span class="na">-e </span><span class="o">*</span>
+<span class="nb">echo</span> <span class="kd">Done</span> <span class="err">!</span> <span class="kd">Save</span> <span class="kd">every</span> <span class="kd">result</span> <span class="k">in</span> <span class="nv">%saveresult%</span>
+</code></pre></div></div>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2021-04-11T15:13:43+01:00">April 11, 2021</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?via=mmistakes&text=Eumeration+for+Windows%20%2FHacking%2FEnumerationForWindows%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=%2FHacking%2FEnumerationForWindows%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=%2FHacking%2FEnumerationForWindows%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://twitter.com/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+        
+      
+        
+          <li><a href="https://github.com/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+          <li><a href="https://instagram.com/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-instagram" aria-hidden="true"></i> Instagram</a></li>
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 Your Name. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>

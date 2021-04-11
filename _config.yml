@@ -100,10 +100,13 @@ author:
       url: "https://twitter.com/Entrophy6"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      url: "https://github.com/Jacoppy"
+      url: "https://github.com/3ntr0phy"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
-      url: "https://instagram.com/"
+      url: "https://instagram.com/__3ntr0py__"
+    - label: "HackTheBox"
+      icon: "fab fa-fw fa-list"
+      url: "https://app.hackthebox.eu/profile/9548"
 
 
 # Site Footer
@@ -251,13 +254,7 @@ collections:
   MachineLearning:
     output: true
     permalink: /:collection/:path/
-  CTF:
-    output: true
-    permalink: /:collection/:path/
-  BugBounty:
-    output: true
-    permalink: /:collection/:path/
-  Graphic:
+  Hacking:
     output: true
     permalink: /:collection/:path/
   Music:
@@ -292,26 +289,10 @@ defaults:
       layout: single
       author_profile: true
       share: true
-  # _CTF
+  # _Hacking
   - scope:
       path: ""
-      type: CTF
-    values:
-      layout: single
-      author_profile: true
-      share: true
-  # _BugBounty
-  - scope:
-      path: ""
-      type: BugBounty
-    values:
-      layout: single
-      author_profile: true
-      share: true
-   # _Graphic
-  - scope:
-      path: ""
-      type: Graphic
+      type: Hacking
     values:
       layout: single
       author_profile: true
