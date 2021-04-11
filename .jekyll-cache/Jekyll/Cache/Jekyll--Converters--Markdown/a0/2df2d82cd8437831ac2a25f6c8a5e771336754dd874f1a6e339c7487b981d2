@@ -1,4 +1,4 @@
-I"B&<p>Here at following a little batch script I created which could be usefull for subdomain discovering and enumeration.
+I"+&<p>Here at following a little batch script I created which could be usefull for subdomain discovering and enumeration.
 I really love <a href="https://github.com/fireeye/commando-vm">CommandoVM</a> so yea, why not developing a little <a href="https://github.com/nahamsec/lazyrecon">lazyrecon</a> for it ;)
 Enjoy!</p>
 
@@ -28,7 +28,7 @@ Enjoy!</p>
 <span class="kd">set</span> <span class="kd">saveresult</span><span class="o">=</span><span class="nv">%@rootpath%</span>\<span class="nv">%@domain%</span>_<span class="nv">%year%</span>_<span class="nv">%month%</span>
 <span class="nb">mkdir</span> <span class="nv">%saveresult%</span>
 <span class="nb">echo</span> <span class="kd">Amass</span> <span class="kd">is</span> <span class="kd">running</span>...
-<span class="nv">%amasspath%</span> <span class="kd">enum</span> <span class="na">-d </span><span class="nv">%@domain%</span> <span class="na">-o </span><span class="nv">%saveresult%</span>\amass.txt <span class="o">-</span><span class="na">-passive
+<span class="nv">%amasspath%</span> <span class="kd">enum</span> <span class="na">-d </span><span class="nv">%@domain%</span> <span class="na">-o </span><span class="nv">%saveresult%</span>\amass.txt <span class="na">--passive
 </span><span class="nb">echo</span> <span class="kd">Amass</span> <span class="kd">Done</span>
 <span class="nb">echo</span> <span class="kd">Sublist3r</span> <span class="kd">is</span> <span class="kd">running</span>...
 <span class="kd">python</span> <span class="nv">%sublister%</span>  <span class="na">-d </span><span class="s2">"</span><span class="nv">%@domain%</span><span class="s2">"</span> <span class="na">-b -o </span><span class="nv">%saveresult%</span>\sublist3r.txt <span class="na">-v

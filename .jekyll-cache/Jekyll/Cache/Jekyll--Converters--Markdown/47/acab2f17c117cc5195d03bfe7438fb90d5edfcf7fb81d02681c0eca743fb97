@@ -1,4 +1,4 @@
-I"BP<h1 id="user">USER</h1>
+I"O<h1 id="user">USER</h1>
 
 <p>As usual we always start with <strong>Nmap</strong> scanning:</p>
 
@@ -50,11 +50,11 @@ PORT     STATE SERVICE VERSION
 <p>This reveals an interesting page, secret.php.
 It shows a chat between system admins  talking about an RCE on the current infrastructure.</p>
 
-<p><img src="http://localhost:4000//assets/images/Ghoul/secret_1.png" alt="" /></p>
+<p><img src="//assets/images/Ghoul/secret_1.png" alt="" /></p>
 
 <p>Due to the fact that the enumeration didn’t show anything else interesting here I swapped port and went to port 8080. I then tried <strong>admin:admin</strong> and it worked, revealing a website for uploading images or zip files on the server.</p>
 
-<p><img src="http://localhost:4000//assets/images/Ghoul/zip_2.png" alt="" /></p>
+<p><img src="//assets/images/Ghoul/zip_2.png" alt="" /></p>
 
 <p>After a few tests in which I verified that it is not possible to easily evade the file-type filters of the upload form I searched a bit on google and I found the Ziplib vulnerability (https://github.com/snyk/zip-slip-vulnerability). This vulnerability allows to write arbitrary files because the zip archives contains directory traversal filenames.</p>
 
@@ -64,11 +64,11 @@ It shows a chat between system admins  talking about an RCE on the current infra
 zip ziplib_www.zip ../../../../../var/www/html/rev.php
 </pre>
 
-<p><img src="http://localhost:4000//assets/images/Ghoul/zip_slip_3.png" alt="" /></p>
+<p><img src="//assets/images/Ghoul/zip_slip_3.png" alt="" /></p>
 
 <p>Once uploaded the ziplib_www.zip file using the upload form, connecting to http://10.10.10.101:80/rev.php returns a reverse shell on our netcat listener.</p>
 
-<p><img src="http://localhost:4000//assets/images/Ghoul/rev_4.png" alt="" /></p>
+<p><img src="//assets/images/Ghoul/rev_4.png" alt="" /></p>
 
 <p>Enumerating the box, I noticed that there are three users with a login: eto,kaneki and noro.
 LinEnum.sh shows up interesting backup files under the folder /var/backups . After having downloaded the whole directory using a meterpreter session and figured out that most of the files are rabbit holes I focused only on the directory /var/backups/backups/keys, which contains three old ssh private keys of the three users.
@@ -82,7 +82,7 @@ Unfortunately all these keys are encrypted so I had to find a way to decrypt tho
 
 <p>And finally I got it cracked!</p>
 
-<p><img src="http://localhost:4000//assets/images/Ghoul/ssh_pswd_5.png" alt="" /></p>
+<p><img src="//assets/images/Ghoul/ssh_pswd_5.png" alt="" /></p>
 
 <p>The ssh decryption password for kaneki ssh is <strong>ILoveTouka</strong> and I am finally able to login as kaneki. 
 Got user !</p>
@@ -99,7 +99,7 @@ notes : I've set up file server into the server's network ,Eto if you need to tr
 
 <p>Indeed, looking at ifconfig:</p>
 
-<p><img src="http://localhost:4000//assets/images/Ghoul/ifconfig_6.png" alt="" /></p>
+<p><img src="//assets/images/Ghoul/ifconfig_6.png" alt="" /></p>
 
 <p>So apparently there is an internal network 172.20.0.0/24 and we need to explore it.
 Indeed, after uploading nmap and having run:</p>
@@ -154,7 +154,7 @@ I noticed then another text file:</p>
 
 <p>This means that there is a git repo somewhere on one of these hosts, which could contain interesting info. Moreover, looking at ifconfig, I noticed that this box is connected to a new subnet,172.18.0.0/24:</p>
 
-<p><img src="http://localhost:4000//assets/images/Ghoul/ifconfig_7.png" alt="" /></p>
+<p><img src="//assets/images/Ghoul/ifconfig_7.png" alt="" /></p>
 
 <p>In order to upload nmap also on this box, I used an ssh tunneling:</p>
 
@@ -198,13 +198,13 @@ PORT   STATE SERVICE
 
 <p>And we can see a login screen of Gogs.</p>
 
-<p><img src="http://localhost:4000//assets/images/Ghoul/web_8.png" alt="" /></p>
+<p><img src="//assets/images/Ghoul/web_8.png" alt="" /></p>
 
 <p>After enormous time spent bruteforcing the credentials I just tried to use all users and passwords already found on the box and I finally found the right combination.</p>
 
 <p><strong>AogiriTest:test@aogiri123</strong></p>
 
-<p><img src="http://localhost:4000//assets/images/Ghoul/gogs_9.png" alt="" /></p>
+<p><img src="//assets/images/Ghoul/gogs_9.png" alt="" /></p>
 
 <p>From a previous note we know there is a vulnerability on gogs so google is our best friend here..
 And I found this coll github repo with Poc : https://github.com/TheZ3ro/gogsownz.
@@ -220,7 +220,7 @@ So mainly we are able to obtain a RCE on gogs. Let’s try to obtain a reverse s
 
 <p>And I am git on 172.18.0.2!</p>
 
-<p><img src="http://localhost:4000//assets/images/Ghoul/root_9.png" alt="" /></p>
+<p><img src="//assets/images/Ghoul/root_9.png" alt="" /></p>
 
 <p>Enumerating the system I noticed that there is only one user except root, which git, which seems mandatory for Gogs. This seems pointless so go on with enumeration!
 Let’s try with classical Linux enumeration files using  https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/
@@ -236,7 +236,7 @@ Running enumeration for SUID binaries we see something interesting:</p>
 <b>/usr/sbin/gosu</b>
 /bin/su</pre>
 
-<p><img src="http://localhost:4000//assets/images/Ghoul/gosu_10.png" alt="" /></p>
+<p><img src="//assets/images/Ghoul/gosu_10.png" alt="" /></p>
 
 <p>So just running:</p>
 
@@ -246,7 +246,7 @@ Running enumeration for SUID binaries we see something interesting:</p>
 
 <p>Going into the /root folder I can see interesting information:</p>
 
-<p><img src="http://localhost:4000//assets/images/Ghoul/root_12.png" alt="" /></p>
+<p><img src="//assets/images/Ghoul/root_12.png" alt="" /></p>
 
 <p>So we have new credentials :</p>
 
@@ -338,7 +338,7 @@ server.address=0.0.0.0</pre>
 
 <pre>su : pasword 7^Grc%C\7xEQ?tb4</pre>
 
-<p><img src="http://localhost:4000//assets/images/Ghoul/kaneki_13.png" alt="" /></p>
+<p><img src="//assets/images/Ghoul/kaneki_13.png" alt="" /></p>
 
 <p>…
 Ok so we are root on the 172.18.0.200, the only host that is still untouched is the docker server on 172.20.0.1. Maybe on the filesystem there are some info for connect to it.
@@ -346,7 +346,7 @@ Run enumeration, nothing.
 Lets try conjobs, just run pspy64 and wait a while.
 And finally something weird happened:</p>
 
-<p><img src="http://localhost:4000//assets/images/Ghoul/pspy_14.png" alt="" /></p>
+<p><img src="//assets/images/Ghoul/pspy_14.png" alt="" /></p>
 
 <p>It seems that some other host is passing through this host to reach 172.18.0.1 for a root session on it…interesting
 After a bit of googling I got my answer:</p>
@@ -358,7 +358,7 @@ After a bit of googling I got my answer:</p>
 <pre>SSH_AUTH_SOCK=/tmp/ssh-e6wtZlMHTY/agent.1061 ssh root@172.18.0.1 -p 2222</pre>
 
 <p>finally root…
-<img src="http://localhost:4000//assets/images/Ghoul/root_15.png" alt="" /></p>
+<img src="//assets/images/Ghoul/root_15.png" alt="" /></p>
 
 <h4 id="who-ate-the-ghoul--thank-you-for-reading-this-write-up-feedback-is-appreciated-happy-hacking-">Who ate the Ghoul ? Thank you for reading this write-up. Feedback is appreciated! Happy hacking :)</h4>
 

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-02-17T15:11:52+00:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">EntrophyBlog</title><subtitle></subtitle><author><name>Entrophy</name></author><entry><title type="html">Ghoul</title><link href="http://localhost:4000/htb/ghoul/" rel="alternate" type="text/html" title="Ghoul" /><published>2019-10-04T00:00:00+01:00</published><updated>2019-10-04T00:00:00+01:00</updated><id>http://localhost:4000/htb/ghoul</id><content type="html" xml:base="http://localhost:4000/htb/ghoul/">&lt;h1 id=&quot;user&quot;&gt;USER&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-04-11T14:31:24+01:00</updated><id>/feed.xml</id><title type="html">EntrophyBlog</title><subtitle></subtitle><author><name>Entrophy</name></author><entry><title type="html">Ghoul</title><link href="/htb/ghoul/" rel="alternate" type="text/html" title="Ghoul" /><published>2019-10-04T00:00:00+01:00</published><updated>2019-10-04T00:00:00+01:00</updated><id>/htb/ghoul</id><content type="html" xml:base="/htb/ghoul/">&lt;h1 id=&quot;user&quot;&gt;USER&lt;/h1&gt;
 
 &lt;p&gt;As usual we always start with &lt;strong&gt;Nmap&lt;/strong&gt; scanning:&lt;/p&gt;
 
@@ -50,11 +50,11 @@ PORT     STATE SERVICE VERSION
 &lt;p&gt;This reveals an interesting page, secret.php.
 It shows a chat between system admins  talking about an RCE on the current infrastructure.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000//assets/images/Ghoul/secret_1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;//assets/images/Ghoul/secret_1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Due to the fact that the enumeration didn’t show anything else interesting here I swapped port and went to port 8080. I then tried &lt;strong&gt;admin:admin&lt;/strong&gt; and it worked, revealing a website for uploading images or zip files on the server.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000//assets/images/Ghoul/zip_2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;//assets/images/Ghoul/zip_2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;After a few tests in which I verified that it is not possible to easily evade the file-type filters of the upload form I searched a bit on google and I found the Ziplib vulnerability (https://github.com/snyk/zip-slip-vulnerability). This vulnerability allows to write arbitrary files because the zip archives contains directory traversal filenames.&lt;/p&gt;
 
@@ -64,11 +64,11 @@ It shows a chat between system admins  talking about an RCE on the current infra
 zip ziplib_www.zip ../../../../../var/www/html/rev.php
 &lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000//assets/images/Ghoul/zip_slip_3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;//assets/images/Ghoul/zip_slip_3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Once uploaded the ziplib_www.zip file using the upload form, connecting to http://10.10.10.101:80/rev.php returns a reverse shell on our netcat listener.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000//assets/images/Ghoul/rev_4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;//assets/images/Ghoul/rev_4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Enumerating the box, I noticed that there are three users with a login: eto,kaneki and noro.
 LinEnum.sh shows up interesting backup files under the folder /var/backups . After having downloaded the whole directory using a meterpreter session and figured out that most of the files are rabbit holes I focused only on the directory /var/backups/backups/keys, which contains three old ssh private keys of the three users.
@@ -82,7 +82,7 @@ Unfortunately all these keys are encrypted so I had to find a way to decrypt tho
 
 &lt;p&gt;And finally I got it cracked!&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000//assets/images/Ghoul/ssh_pswd_5.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;//assets/images/Ghoul/ssh_pswd_5.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;The ssh decryption password for kaneki ssh is &lt;strong&gt;ILoveTouka&lt;/strong&gt; and I am finally able to login as kaneki. 
 Got user !&lt;/p&gt;
@@ -99,7 +99,7 @@ notes : I've set up file server into the server's network ,Eto if you need to tr
 
 &lt;p&gt;Indeed, looking at ifconfig:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000//assets/images/Ghoul/ifconfig_6.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;//assets/images/Ghoul/ifconfig_6.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;So apparently there is an internal network 172.20.0.0/24 and we need to explore it.
 Indeed, after uploading nmap and having run:&lt;/p&gt;
@@ -154,7 +154,7 @@ I noticed then another text file:&lt;/p&gt;
 
 &lt;p&gt;This means that there is a git repo somewhere on one of these hosts, which could contain interesting info. Moreover, looking at ifconfig, I noticed that this box is connected to a new subnet,172.18.0.0/24:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000//assets/images/Ghoul/ifconfig_7.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;//assets/images/Ghoul/ifconfig_7.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;In order to upload nmap also on this box, I used an ssh tunneling:&lt;/p&gt;
 
@@ -198,13 +198,13 @@ PORT   STATE SERVICE
 
 &lt;p&gt;And we can see a login screen of Gogs.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000//assets/images/Ghoul/web_8.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;//assets/images/Ghoul/web_8.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;After enormous time spent bruteforcing the credentials I just tried to use all users and passwords already found on the box and I finally found the right combination.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;AogiriTest:test@aogiri123&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000//assets/images/Ghoul/gogs_9.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;//assets/images/Ghoul/gogs_9.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;From a previous note we know there is a vulnerability on gogs so google is our best friend here..
 And I found this coll github repo with Poc : https://github.com/TheZ3ro/gogsownz.
@@ -220,7 +220,7 @@ So mainly we are able to obtain a RCE on gogs. Let’s try to obtain a reverse s
 
 &lt;p&gt;And I am git on 172.18.0.2!&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000//assets/images/Ghoul/root_9.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;//assets/images/Ghoul/root_9.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Enumerating the system I noticed that there is only one user except root, which git, which seems mandatory for Gogs. This seems pointless so go on with enumeration!
 Let’s try with classical Linux enumeration files using  https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/
@@ -236,7 +236,7 @@ Running enumeration for SUID binaries we see something interesting:&lt;/p&gt;
 &lt;b&gt;/usr/sbin/gosu&lt;/b&gt;
 /bin/su&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000//assets/images/Ghoul/gosu_10.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;//assets/images/Ghoul/gosu_10.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;So just running:&lt;/p&gt;
 
@@ -246,7 +246,7 @@ Running enumeration for SUID binaries we see something interesting:&lt;/p&gt;
 
 &lt;p&gt;Going into the /root folder I can see interesting information:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000//assets/images/Ghoul/root_12.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;//assets/images/Ghoul/root_12.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;So we have new credentials :&lt;/p&gt;
 
@@ -338,7 +338,7 @@ server.address=0.0.0.0&lt;/pre&gt;
 
 &lt;pre&gt;su : pasword 7^Grc%C\7xEQ?tb4&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000//assets/images/Ghoul/kaneki_13.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;//assets/images/Ghoul/kaneki_13.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;…
 Ok so we are root on the 172.18.0.200, the only host that is still untouched is the docker server on 172.20.0.1. Maybe on the filesystem there are some info for connect to it.
@@ -346,7 +346,7 @@ Run enumeration, nothing.
 Lets try conjobs, just run pspy64 and wait a while.
 And finally something weird happened:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000//assets/images/Ghoul/pspy_14.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;//assets/images/Ghoul/pspy_14.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;It seems that some other host is passing through this host to reach 172.18.0.1 for a root session on it…interesting
 After a bit of googling I got my answer:&lt;/p&gt;
@@ -358,9 +358,9 @@ After a bit of googling I got my answer:&lt;/p&gt;
 &lt;pre&gt;SSH_AUTH_SOCK=/tmp/ssh-e6wtZlMHTY/agent.1061 ssh root@172.18.0.1 -p 2222&lt;/pre&gt;
 
 &lt;p&gt;finally root…
-&lt;img src=&quot;http://localhost:4000//assets/images/Ghoul/root_15.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;//assets/images/Ghoul/root_15.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;h4 id=&quot;who-ate-the-ghoul--thank-you-for-reading-this-write-up-feedback-is-appreciated-happy-hacking-&quot;&gt;Who ate the Ghoul ? Thank you for reading this write-up. Feedback is appreciated! Happy hacking :)&lt;/h4&gt;</content><author><name>Entrophy</name></author><summary type="html">USER</summary></entry><entry><title type="html">Bastion</title><link href="http://localhost:4000/htb/bastion/" rel="alternate" type="text/html" title="Bastion" /><published>2019-09-13T00:00:00+01:00</published><updated>2019-09-13T00:00:00+01:00</updated><id>http://localhost:4000/htb/bastion</id><content type="html" xml:base="http://localhost:4000/htb/bastion/">&lt;h1 id=&quot;user&quot;&gt;USER&lt;/h1&gt;
+&lt;h4 id=&quot;who-ate-the-ghoul--thank-you-for-reading-this-write-up-feedback-is-appreciated-happy-hacking-&quot;&gt;Who ate the Ghoul ? Thank you for reading this write-up. Feedback is appreciated! Happy hacking :)&lt;/h4&gt;</content><author><name>Entrophy</name></author><category term="HTB" /><summary type="html">USER</summary></entry><entry><title type="html">Bastion</title><link href="/htb/bastion/" rel="alternate" type="text/html" title="Bastion" /><published>2019-09-13T00:00:00+01:00</published><updated>2019-09-13T00:00:00+01:00</updated><id>/htb/bastion</id><content type="html" xml:base="/htb/bastion/">&lt;h1 id=&quot;user&quot;&gt;USER&lt;/h1&gt;
 
 &lt;p&gt;The first thing we have done has been to perform an &lt;strong&gt;Nmap&lt;/strong&gt; scan against the target.&lt;/p&gt;
 
@@ -394,33 +394,33 @@ PORT STATE SERVICE VERSION
 &lt;p&gt;As it is possible to notice the only interesting ports are SMB ports. For this reason we
 tried to use smbmap with guest account, through the following command :&lt;/p&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;smbmap -H 10.10.10.134 -u guest -p &quot;&quot; -R&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;smbmap -H 10.10.10.134 -u guest -p &quot;&quot; -R&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000//assets/images/bastion/initial_smb.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;//assets/images/bastion/initial_smb.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;As it is possible to observe the result is quite interesting because we can freely access to
 the Backup folder of the SMB server.
 Trying to download large files has revealed to be slow so we tried so we tried to mount
 the smb share on our box, using the following command:&lt;/p&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;mount //10.10.10.134/Backups ./vhd/ -o user=guest&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mount //10.10.10.134/Backups ./vhd/ -o user=guest&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;Unfortunately the command does not work properly, apparently the File System is CIFS and mount
 need a further module, cifs-utils.
 After having installed the module, we could access the SMB share running:&lt;/p&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;mount //10.10.10.134/Backups ./vhd/ -o user=guest&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mount //10.10.10.134/Backups ./vhd/ -o user=guest&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;Enumerating the share locally, we can notice a WindowsImageBackup folder, which could potentially
 contain some interesting backup files. Reaching the following folder WindowsImageBackup/L4mpje-
 PC/Backup 2019-02-22 124351 is possible to notice some xml and Windows Disk Image files.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000//assets/images/bastion/tree_smbshare.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;//assets/images/bastion/tree_smbshare.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;The first try is to mount that image file. We need to find a tool which allows us to mount vhd image
 files, because Kali doesn’t support it natively.&lt;/p&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo apt-get install libvhdi-utils sleuthkit
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo apt-get install libvhdi-utils sleuthkit
 vhdimount 9b9cfbc4-369e-11e9-a17c-806e6f6e6963.vhd
 /root/Documents/HTB/Bastion/smb/vhd_mount/&lt;/code&gt;&lt;/p&gt;
 
@@ -430,19 +430,19 @@ NTFS signature is missing.
 Analysing the vhdi1 using mmls shows that the NFS partition does not start from the beginning of the
 file, but from 0000000128.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000//assets/images/bastion/mmls.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;//assets/images/bastion/mmls.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Using this information is possible to calculate the offset, which is 128*512 (sector length) = 65536.
 Rewriting the commands brings to:&lt;/p&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;mount -vt ntfs-3g -o ro,noload,offset=65536 /.vhdi1 ./backup/&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mount -vt ntfs-3g -o ro,noload,offset=65536 /.vhdi1 ./backup/&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;And we were able to mount the partition in the backup folder. Looking at the backup, it is clear that it
 contains the whole Windows OS, including the configuration files. Indeed, it is possible to access to the
 folder /Windows/System32/config and have access to SYSTEM and SAM files, which are needed in
 order to dump the hashes of the users.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000//assets/images/bastion/hashdump.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;//assets/images/bastion/hashdump.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Using john specifying the NT format is possible to crack the password of user L4mpje.
 Administrator::500:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
@@ -452,7 +452,7 @@ L4mpje:&lt;strong&gt;bureaulampje&lt;/strong&gt;:1000:aad3b435b51404eeaad3b435b5
 Using the discovered credential over ssh allows to open a session as user L4mpje, obtaining the first
 flag.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000//assets/images/bastion/user.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;//assets/images/bastion/user.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;root&quot;&gt;ROOT&lt;/h1&gt;
 
@@ -461,7 +461,7 @@ interesting files. Unofrtunately the systeminfo command is denied, so I tried to
 information using powershell, verifying if I obtain a different result. And so it was, we were able to
 identify the current OS version using Get-ComputerInfo.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000//assets/images/bastion/windowsos.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;//assets/images/bastion/windowsos.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;In order to have a complete overview of the files and programs installed on the comuter, I also run the
 Powerless [1] enumeration script. The output is present as Appendix.
@@ -476,7 +476,7 @@ system.
 The file which contains the credential we are searching for is under Users\L4mpje\AppData\Roaming&lt;br /&gt;
 mRemoteNG\confCons.xml which contains two nodes, so probably, two encrypted credentials.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000//assets/images/bastion/nodes.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;//assets/images/bastion/nodes.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;After having started a Windows VM and having installed mRemoteNG on it, I modified the
 confCons.xml file in order to set a blank password for opening the file and loaded it using mRemoteNG
@@ -484,12 +484,12 @@ on my VM. The file is successfully loaded and the program shows two connectins :
 Using the password lookup tool of mRemoteNg, we are able to check the credentials of both user,
 finding a new password.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000//assets/images/bastion/Capture.PNG&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;//assets/images/bastion/Capture.PNG&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Providing this as password for user Administrator over ssh opens up an ssh session, so are have finally
 owned the box. We can take the last flag and say bye bye to Bastion :P&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000//assets/images/bastion/root.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;//assets/images/bastion/root.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;references&quot;&gt;References&lt;/h1&gt;
 
@@ -497,4 +497,4 @@ owned the box. We can take the last flag and say bye bye to Bastion :P&lt;/p&gt;
 
 &lt;p&gt;[2] : https://mremoteng.org&lt;/p&gt;
 
-&lt;p&gt;[3] : http://hackersvanguard.com/mremoteng-insecure-password-storage/&lt;/p&gt;</content><author><name>Entrophy</name></author><summary type="html">USER</summary></entry></feed>
+&lt;p&gt;[3] : http://hackersvanguard.com/mremoteng-insecure-password-storage/&lt;/p&gt;</content><author><name>Entrophy</name></author><category term="HTB" /><summary type="html">USER</summary></entry></feed>
