@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-05-13T11:13:24+01:00</updated><id>/feed.xml</id><title type="html">EntrophyBlog</title><subtitle></subtitle><author><name>Entrophy</name></author><entry><title type="html">Monitors</title><link href="/htb/monitors/" rel="alternate" type="text/html" title="Monitors" /><published>2021-05-13T00:00:00+01:00</published><updated>2021-05-13T00:00:00+01:00</updated><id>/htb/monitors</id><content type="html" xml:base="/htb/monitors/">&lt;h1 id=&quot;user&quot;&gt;User&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-05-13T11:19:25+01:00</updated><id>/feed.xml</id><title type="html">EntrophyBlog</title><subtitle></subtitle><author><name>Entrophy</name></author><entry><title type="html">Monitors</title><link href="/htb/monitors/" rel="alternate" type="text/html" title="Monitors" /><published>2021-05-13T00:00:00+01:00</published><updated>2021-05-13T00:00:00+01:00</updated><id>/htb/monitors</id><content type="html" xml:base="/htb/monitors/">&lt;h1 id=&quot;user&quot;&gt;User&lt;/h1&gt;
 
 &lt;p&gt;The first thing is to use nmap for scan ports :&lt;/p&gt;
 
@@ -50,7 +50,7 @@ Nmap done: 1 IP address (1 host up) scanned in 19.76 seconds
 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;It seems that there is a vulnerability - https://www.exploit-db.com/exploits/44544 :&lt;/p&gt;
+&lt;p&gt;It seems that there is a vulnerability - &lt;a href=&quot;https://www.exploit-db.com/exploits/44544&quot;&gt;https://www.exploit-db.com/exploits/44544&lt;/a&gt; :&lt;/p&gt;
 
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;curl http://monitors.htb/wp-content/plugins/wp-with-spritz/wp.spritz.content.filter.php?url=/../../../..//etc/passwd 
 
@@ -126,7 +126,7 @@ define( 'DB_COLLATE', '' );
 
 &lt;p&gt;a new vhost appeared &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cacti.monitors.htb&lt;/code&gt;! Add it to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hosts&lt;/code&gt; file and visit the website.&lt;/p&gt;
 
-&lt;p&gt;Use the wordpress credentials for login and we are in. The framework is version 1.2.12 –&amp;gt; https://www.exploit-db.com/exploits/49810. 
+&lt;p&gt;Use the wordpress credentials for login and we are in. The framework is version 1.2.12 –&amp;gt; &lt;a href=&quot;https://www.exploit-db.com/exploits/49810&quot;&gt;https://www.exploit-db.com/exploits/49810&lt;/a&gt;. 
 I had to do it manually via burp :&lt;/p&gt;
 
 &lt;p&gt;Step  1:&lt;/p&gt;
@@ -162,7 +162,7 @@ run
 &lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;and we got shell as root into the docker container (there is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.dockernev&lt;/code&gt; ) . So now we need to evade the docker somehow.
-Checking the capabilities with linpeas we can notice that we have  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CAP_SYS_MODULE&lt;/code&gt; which is really interesting. I followed different articles ( https://xcellerator.github.io/posts/docker_escape/, https://blog.pentesteracademy.com/abusing-sys-module-capability-to-perform-docker-container-breakout-cf5c29956edd) which mainly prove that, due to the fact that the kernel for the container is the same as the host, we can evade the container installing a module which interacts directly with the kernel.&lt;/p&gt;
+Checking the capabilities with linpeas we can notice that we have  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CAP_SYS_MODULE&lt;/code&gt; which is really interesting. I followed different articles ( &lt;a href=&quot;https://xcellerator.github.io/posts/docker_escape/&quot;&gt;https://xcellerator.github.io/posts/docker_escape/&lt;/a&gt; , &lt;a href=&quot;https://blog.pentesteracademy.com/abusing-sys-module-capability-to-perform-docker-container-breakout-cf5c29956edd&quot;&gt;https://blog.pentesteracademy.com/abusing-sys-module-capability-to-perform-docker-container-breakout-cf5c29956edd&lt;/a&gt;) which mainly prove that, due to the fact that the kernel for the container is the same as the host, we can evade the container installing a module which interacts directly with the kernel.&lt;/p&gt;
 
 &lt;p&gt;So I just created two files, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Makefile&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;reverse.c&lt;/code&gt; :&lt;/p&gt;
 
