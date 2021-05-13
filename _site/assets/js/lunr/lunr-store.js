@@ -4,8 +4,8 @@ var store = [{
         "tags": [],
         "url": "/Hacking/EnumerationForWindows/",
         "teaser":null},{
-        "title": "Adversarial Transplantation",
-        "excerpt":"cane  ","categories": [],
+        "title": "Adversarial Android Malware",
+        "excerpt":"In this article I am going to explain a piece of work done through my research, focused on problem space adversarial samples  ","categories": [],
         "tags": [],
         "url": "/MachineLearning/AdversarialTransplantation/",
         "teaser":null},{
