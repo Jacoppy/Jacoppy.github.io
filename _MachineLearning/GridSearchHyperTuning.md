@@ -1,5 +1,8 @@
 ---
 title: "Hyperparameter Tuning GDBT"
+search: true
+categories: 
+  - MachineLearning
 ---
 
 Hyperparameters tuning represents a necessity while working with AI models in order to optimize the performances. There are different approaches to this: in this little article I am going to cover the bruteforce one, GridSearchcV.
