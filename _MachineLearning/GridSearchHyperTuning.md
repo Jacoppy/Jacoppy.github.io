@@ -5,13 +5,13 @@ categories:
   - MachineLearning
 ---
 
-Hyperparameters tuning represents a necessity while working with AI models in order to optimize the performances. There are different approaches to this: in this little article I am going to cover the bruteforce one, GridSearchcV.
+Hyperparameters tuning represents a necessity while working with AI models in order to optimize the performances. There are different approaches to this: in this little article I am going to cover the bruteforce one, GridSearchCV.
 
 # What is GridSearchCV?
 
-GridSearch : process of performing hyperparameter tuning in order to determine the optimal values for a given model. 
-CV : Cross-Valication
-How does it work? GridSearchCV tries all the combinations of the values passed in the dictionary and evaluates the model for each combination using the Cross-Validation method. Hence after using this function we get accuracy/loss for every combination of hyperparameters and we can choose the one with the best performance.
+- GridSearch : process of performing hyperparameter tuning in order to determine the optimal values for a given model. 
+- CV : Cross-Valication
+- How does it work? GridSearchCV tries all the combinations of the values passed in the dictionary and evaluates the model for each combination using the Cross-Validation method. Hence after using this function we get accuracy/loss for every combination of hyperparameters and we can choose the one with the best performance.
 
 # Parameters to tune
 
