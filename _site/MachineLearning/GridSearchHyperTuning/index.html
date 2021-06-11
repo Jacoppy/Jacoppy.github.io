@@ -9,8 +9,8 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>3ntr0py Project - EntrophyBlog</title>
-<meta name="description" content="Passing By ">
+<!-- begin _includes/seo.html --><title>Hyperparameter Tuning GDBT - EntrophyBlog</title>
+<meta name="description" content="Hyperparameters tuning represents a necessity while working with AI models in order to optimize the performances. There are different approaches to this: in this little article I am going to cover the bruteforce one, GridSearchcV. ">
 
 
   <meta name="author" content="Entrophy">
@@ -19,11 +19,11 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="EntrophyBlog">
-<meta property="og:title" content="3ntr0py Project">
-<meta property="og:url" content="/Music/Amazing%20DnB/">
+<meta property="og:title" content="Hyperparameter Tuning GDBT">
+<meta property="og:url" content="/MachineLearning/GridSearchHyperTuning/">
 
 
-  <meta property="og:description" content="Passing By ">
+  <meta property="og:description" content="Hyperparameters tuning represents a necessity while working with AI models in order to optimize the performances. There are different approaches to this: in this little article I am going to cover the bruteforce one, GridSearchcV. ">
 
 
 
@@ -32,9 +32,9 @@
 
 
   <meta name="twitter:site" content="@mmistakes">
-  <meta name="twitter:title" content="3ntr0py Project">
-  <meta name="twitter:description" content="Passing By ">
-  <meta name="twitter:url" content="/Music/Amazing%20DnB/">
+  <meta name="twitter:title" content="Hyperparameter Tuning GDBT">
+  <meta name="twitter:description" content="Hyperparameters tuning represents a necessity while working with AI models in order to optimize the performances. There are different approaches to this: in this little article I am going to cover the bruteforce one, GridSearchcV. ">
+  <meta name="twitter:url" content="/MachineLearning/GridSearchHyperTuning/">
 
   
     <meta name="twitter:card" content="summary">
@@ -58,7 +58,7 @@
   
 
 
-<link rel="canonical" href="/Music/Amazing%20DnB/">
+<link rel="canonical" href="/MachineLearning/GridSearchHyperTuning/">
 
 
 
@@ -301,15 +301,15 @@
 
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="3ntr0py Project">
-    <meta itemprop="description" content="Passing By">
+    <meta itemprop="headline" content="Hyperparameter Tuning GDBT">
+    <meta itemprop="description" content="Hyperparameters tuning represents a necessity while working with AI models in order to optimize the performances. There are different approaches to this: in this little article I am going to cover the bruteforce one, GridSearchcV.">
     <meta itemprop="datePublished" content="2021-06-11T18:27:47+01:00">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">3ntr0py Project
+          <h1 id="page-title" class="page__title" itemprop="headline">Hyperparameter Tuning GDBT
 </h1>
           
         </header>
@@ -317,14 +317,122 @@
 
       <section class="page__content" itemprop="text">
         
-        <h1 id="passing-by">Passing By</h1>
+        <p>Hyperparameters tuning represents a necessity while working with AI models in order to optimize the performances. There are different approaches to this: in this little article I am going to cover the bruteforce one, GridSearchcV.</p>
 
-<p>Just released my first EP called Passing By available on main streaming platforms :)
-Share share share… and share again! 
-<a href="https://linktr.ee/3ntr0py">Sharing platforms</a>
-<a href="https://3ntr0py.eu/">Website</a></p>
+<h1 id="what-is-gridsearchcv">What is GridSearchCV?</h1>
 
-<p><img src="//assets/images/passing.jpg" alt="" /></p>
+<p>GridSearch : process of performing hyperparameter tuning in order to determine the optimal values for a given model. 
+CV : Cross-Valication
+How does it work? GridSearchCV tries all the combinations of the values passed in the dictionary and evaluates the model for each combination using the Cross-Validation method. Hence after using this function we get accuracy/loss for every combination of hyperparameters and we can choose the one with the best performance.</p>
+
+<h1 id="parameters-to-tune">Parameters to tune</h1>
+
+<h2 id="xgboost">XGBoost</h2>
+
+<ul>
+  <li>subsample  :  Each tree will only get a % of the training examples and can be values between 0 and 1. Lowering this value stops subsets of training examples dominating the model and allows greater generalisation.</li>
+  <li>colsample_bytree  : Similar to subsample but for columns rather than rows. Again you can set values between 0 and 1 where lower values can make the model generalise better by stopping any one field having too much prominence, a prominence that might not exist in the test data.</li>
+  <li>colsample_bylevel  : Denotes the fraction of columns to be randomly samples for each tree.</li>
+  <li>n_estimators : is the number of iterations the model will perform or in other words the number of trees that will be created</li>
+  <li>learning_rate : in layman’s terms it is how much the weights are adjusted each time a tree is built. Set the learning rate too high and the algorithm might miss the optimum weights but set it too low and it might converge to suboptimal values.</li>
+</ul>
+
+<h2 id="lighgbm">LighGBM</h2>
+
+<ul>
+  <li>subsample [0-1] :  Each tree will only get a % of the training examples and can be values between 0 and 1. Lowering this value stops subsets of training examples dominating the model and allows greater generalisation.</li>
+  <li>colsample_bytree [0-1] : Similar to subsample but for columns rather than rows. Again you can set values between 0 and 1 where lower values can make the model generalise better by stopping any one field having too much prominence, a prominence that might not exist in the test data.</li>
+  <li>colsample_bylevel [0-1] : Denotes the fraction of columns to be randomly samples for each tree.</li>
+  <li>n_estimators : is the number of iterations the model will perform or in other words the number of trees that will be created</li>
+  <li>learning_rate : in layman’s terms it is how much the weights are adjusted each time a tree is built. Set the learning rate too high and the algorithm might miss the optimum weights but set it too low and it might converge to suboptimal values.</li>
+  <li>num_leaves :you set the maximum number of leaves each weak learner has: large num_leaves increases accuracy on the training set and also the chance of getting hurt by overfitting</li>
+  <li>feature_fraction : deals with column sampling and can be used to speed up training or deal with overfitting</li>
+  <li>reg_alpha, reg_alpha : regularization</li>
+</ul>
+
+<h1 id="code">Code</h1>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import xgboost as xgb
+from sklearn.model_selection import GridSearchCV,RandomizedSearchCV
+from sklearn.preprocessing import normalize
+import ujson as json
+from settings import config
+import pickle
+from sklearn.feature_extraction import DictVectorizer
+import numpy as np
+import lightgbm as lgb
+
+def pipeline_GridSearch(X_train_data , X_test_data , y_train_data ,
+                       model , param_grid , cv=10 , scoring_fit='roc_auc' ,
+                       do_probabilities=False) :
+    gs = GridSearchCV (
+        estimator=model ,
+        param_grid=param_grid ,
+        cv=cv ,
+        n_jobs=-1 ,
+        scoring=scoring_fit ,
+        verbose=2
+    )
+    fitted_model = gs.fit ( X_train_data , y_train_data )
+
+    if do_probabilities :
+        pred = fitted_model.predict_proba ( X_test_data )
+    else :
+        pred = fitted_model.predict ( X_test_data )
+
+    return fitted_model , pred
+
+
+
+
+
+X,y,X_train, X_test, y_train, y_test, X_validation, y_validation, vec =load_features_drebin(config['Drebin_X_file'],config['Drebin_Y_file'])
+xgb_Classifier = xgb.XGBClassifier(
+    objective= 'binary:logistic',
+    nthread=4,
+    seed=42
+)
+#GridSearch
+gbm_param_grid = {
+    'colsample_bytree': np.linspace(0.1, 0.5, 5),
+    'subsamples':np.linspace(0.1, 1.0, 10),
+    'colsample_bylevel':np.linspace(0.1, 0.5, 5),
+    'n_estimators': list(range(60, 340, 40)),
+    'max_depth': list(range(2,16)),
+    'learning_rate':np.logspace(-3, -0.8, 5)
+}
+model_xgb,preds = pipeline_GridSearch(X_train, X_test, y_train, xgb_Classifier,gbm_param_grid, cv=5, scoring_fit='roc_auc')
+
+fixed_params = {'objective': 'binary',
+             'metric': 'auc',
+             'is_unbalance':True,
+             'bagging_freq':5,
+             'boosting':'dart',
+             'num_boost_round':300,
+             'early_stopping_rounds':30}
+lgb_classifier = lgb.LGBMClassifier()
+lgb_param_grid = {
+    'n_estimators': list(range(60, 340, 40)),
+    'colsample_bytree': np.linspace(0.1, 0.5, 5),
+    'max_depth': list(range(2,16)),
+    'num_leaves':list(range(50, 200, 50)),
+    'reg_alpha': np.logspace(-3, -2, 3),
+    'reg_lambda': np.logspace(-2, 1, 4),
+    'subsample': np.linspace(0.1, 1.0, 10),
+    'feature_fraction': np.linspace(0.1, 1.0, 10),
+    'learning_rate':np.logspace(-3, -0.8, 5)
+}
+model_lgbm,preds = pipeline_GridSearch(X_train, X_test, y_train, lgb_classifier,lgb_param_grid, cv=5, scoring_fit='roc_auc')
+print("Grid Search Best parameters found LGBM: ", model_lgbm.best_params_)
+
+print("Grid Search Best parameters found XGB: ", model_xgb.best_params_)
+
+</code></pre></div></div>
+
+<p>There are also other ways to tune hyperparameters of course :)
+E.g : <a href="https://towardsdatascience.com/beyond-grid-search-hypercharge-hyperparameter-tuning-for-xgboost-7c78f7a2929d">Bayesian optimization</a></p>
+
+<p>Happy tuning!</p>
 
         
       </section>
@@ -342,11 +450,11 @@ Share share share… and share again!
       <section class="page__share">
   
 
-  <a href="https://twitter.com/intent/tweet?via=mmistakes&text=3ntr0py+Project%20%2FMusic%2FAmazing%2520DnB%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?via=mmistakes&text=Hyperparameter+Tuning+GDBT%20%2FMachineLearning%2FGridSearchHyperTuning%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=%2FMusic%2FAmazing%2520DnB%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=%2FMachineLearning%2FGridSearchHyperTuning%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=%2FMusic%2FAmazing%2520DnB%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=%2FMachineLearning%2FGridSearchHyperTuning%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
